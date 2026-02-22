@@ -1,0 +1,130 @@
+User-agent: *
+Disallow: /admin
+Disallow: /admin/
+Disallow: /test_index
+Disallow: /test_index/
+Disallow: /wp-
+Disallow: /*.php$
+Disallow: /*.env$
+Disallow: /cgi-bin/
+Disallow: /backup
+Disallow: /sql
+Disallow: /shell
+Disallow: /xmlrpc
+Disallow: /config
+Disallow: /wp-content/
+Disallow: /wp-includes/
+Disallow: /administrator/
+Disallow: /*/wp-admin/
+Disallow: /*/wp-login/
+Disallow: /*/wp-content/
+Disallow: /*/wp-includes/
+Disallow: /*/uploads/
+Disallow: /*/plugins/
+Disallow: /*/themes/
+Disallow: /api/
+Disallow: /private/
+Disallow: /secret/
+Disallow: /tmp/
+Disallow: /logs/
+Disallow: /debug/
+
+User-agent: sqlmap
+Disallow: /
+
+User-agent: nikto
+Disallow: /
+
+User-agent: Acunetix
+Disallow: /
+
+User-agent: Nessus
+Disallow: /
+
+User-agent: Netsparker
+Disallow: /
+
+User-agent: WPScan
+Disallow: /
+
+User-agent: JoomScan
+Disallow: /
+
+User-agent: DirBuster
+Disallow: /
+
+User-agent: Gobuster
+Disallow: /
+
+User-agent: Arachni
+Disallow: /
+
+User-agent: hydra
+Disallow: /
+
+User-agent: nmap
+Disallow: /
+
+User-agent: Metasploit
+Disallow: /
+
+User-agent: w3af
+Disallow: /
+
+User-agent: Googlebot
+Allow: /$
+Allow: /global-warming/
+Allow: /global-warming/game
+Allow: /global-warming/articles/
+Allow: /profile/
+Disallow: /admin
+Disallow: /admin/
+Disallow: /wp-
+Disallow: /*.php$
+
+User-agent: YandexBot
+Allow: /$
+Allow: /global-warming/
+Allow: /global-warming/game
+Allow: /global-warming/articles/
+Allow: /profile/
+Disallow: /admin
+Disallow: /admin/
+Disallow: /wp-
+Disallow: /*.php$
+
+User-agent: Bingbot
+Allow: /$
+Allow: /global-warming/
+Allow: /global-warming/game
+Allow: /global-warming/articles/
+Allow: /profile/
+Disallow: /admin
+Disallow: /admin/
+Disallow: /wp-
+Disallow: /*.php$
+
+User-agent: DuckDuckBot
+Allow: /$
+Allow: /global-warming/
+Allow: /global-warming/game
+Allow: /global-warming/articles/
+Allow: /profile/
+Disallow: /admin
+Disallow: /admin/
+Disallow: /wp-
+Disallow: /*.php$
+
+User-agent: Applebot
+User-agent: Baiduspider
+User-agent: Slurp
+User-agent: FacebookExternalHit
+User-agent: Twitterbot
+Allow: /$
+Allow: /global-warming/
+Disallow: /admin
+Disallow: /admin/
+Disallow: /wp-
+Disallow: /*.php$
+
+Sitemap: https://alexstudiocode.ru/map

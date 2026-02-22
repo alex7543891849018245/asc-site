@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+		<!--	created with www.mysitemapgenerator.com	-->
+		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>https://alexstudiocode.ru/</loc>
+	<lastmod>2025-05-06T07:38:21+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://alexstudiocode.ru/login</loc>
+	<lastmod>2025-05-06T07:38:21+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://alexstudiocode.ru/global-warming</loc>
+	<lastmod>2025-05-06T07:38:21+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://alexstudiocode.ru/cgi-bin/wsgi.py/</loc>
+	<lastmod>2025-05-06T07:38:22+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://alexstudiocode.ru/cgi-bin/wsgi.py/login</loc>
+	<lastmod>2025-05-06T07:38:22+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://alexstudiocode.ru/shop</loc>
+	<lastmod>2025-05-06T07:38:25+01:00</lastmod>
+	<priority>0.5</priority>
+</url>
+<url>
+	<loc>https://alexstudiocode.ru/global-warming/articles/1</loc>
+	<lastmod>2025-05-06T07:38:25+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://alexstudiocode.ru/global-warming/game</loc>
+	<lastmod>2025-05-06T07:38:25+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://alexstudiocode.ru/global-warming/articles/2</loc>
+	<lastmod>2025-05-06T07:38:30+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://alexstudiocode.ru/global-warming/articles/3</loc>
+	<lastmod>2025-05-06T07:38:30+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://alexstudiocode.ru/global-warming/articles/4</loc>
+	<lastmod>2025-05-06T07:38:30+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://alexstudiocode.ru/global-warming/articles/5</loc>
+	<lastmod>2025-05-06T07:38:30+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+</urlset>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RogueLike Adventure — Скачать игру | AlexStudio Code</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #10b981;
+      --warning: #f59e0b;
+      --dark: #0f0f23;
+      --darker: #0a0a1a;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --glass: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+      color: var(--light);
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .navbar {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+
+    .back-link {
+      color: var(--light);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+      background: var(--glass);
+      color: var(--primary);
+    }
+
+    .game-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 120px 2rem 2rem;
+    }
+
+    .game-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .game-title {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(45deg, #f59e0b, #d97706);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+
+    .game-subtitle {
+      font-size: 1.25rem;
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .game-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .game-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .game-screenshot {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .screenshot-placeholder {
+      font-size: 4rem;
+      color: var(--warning);
+      margin-bottom: 1rem;
+    }
+
+    .screenshot-text {
+      color: var(--gray);
+      font-size: 1rem;
+    }
+
+    .game-info {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .info-section {
+      margin-bottom: 2rem;
+    }
+
+    .info-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .info-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--light);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .info-title i {
+      color: var(--warning);
+    }
+
+    .features-list {
+      list-style: none;
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 0;
+      color: var(--light);
+    }
+
+    .feature-item i {
+      color: var(--secondary);
+      width: 20px;
+    }
+
+    .system-requirements {
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .requirement {
+      display: flex;
+      justify-content: between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .requirement:last-child {
+      border-bottom: none;
+    }
+
+    .req-label {
+      color: var(--gray);
+      flex: 1;
+    }
+
+    .req-value {
+      color: var(--light);
+      font-weight: 600;
+    }
+
+    .download-section {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .download-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(45deg, var(--warning), #d97706);
+    }
+
+    .download-icon {
+      font-size: 4rem;
+      color: var(--warning);
+      margin-bottom: 1.5rem;
+    }
+
+    .download-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--light);
+      margin-bottom: 1rem;
+    }
+
+    .download-text {
+      color: var(--gray);
+      margin-bottom: 2rem;
+      font-size: 1.125rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      background: linear-gradient(45deg, var(--warning), #d97706);
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1.125rem;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn:disabled:hover {
+      transform: none;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    }
+
+    .warning-banner {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .warning-banner i {
+      color: #ef4444;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .warning-text {
+      color: #fca5a5;
+      font-weight: 600;
+    }
+
+    .progress-section {
+      margin-top: 2rem;
+    }
+
+    .progress-label {
+      color: var(--gray);
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: between;
+    }
+
+    .progress-bar {
+      background: var(--glass);
+      border-radius: 10px;
+      height: 8px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      background: linear-gradient(45deg, var(--warning), #d97706);
+      height: 100%;
+      width: 65%;
+      border-radius: 10px;
+      transition: width 0.3s ease;
+    }
+
+    /* Анимации */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .game-content, .download-section {
+      animation: fadeInUp 0.6s ease;
+    }
+  </style>
+</head>
+<body>
+  <!-- Навигация -->
+  <nav class="navbar">
+    <div class="nav-content">
+      <a href="/" class="logo">AlexStudio Code</a>
+      <a href="/" class="back-link">
+        <i class="fas fa-arrow-left"></i>
+        Назад к проектам
+      </a>
+    </div>
+  </nav>
+
+  <div class="game-container">
+    <!-- Заголовок -->
+    <div class="game-header">
+      <h1 class="game-title">RogueLike Adventure</h1>
+      <p class="game-subtitle">Увлекательное путешествие в мир процедурно генерируемых подземелий и бесконечных приключений</p>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="game-content">
+      <!-- Скриншоты/превью -->
+      <div class="game-screenshot">
+        <div class="screenshot-placeholder">
+          <i class="fas fa-dungeon"></i>
+        </div>
+        <div class="screenshot-text">Скриншоты появятся ближе к релизу</div>
+      </div>
+
+      <!-- Информация об игре -->
+      <div class="game-info">
+        <div class="info-section">
+          <h3 class="info-title">
+            <i class="fas fa-info-circle"></i>
+            Об игре
+          </h3>
+          <p style="color: var(--light); line-height: 1.6;">
+            RogueLike Adventure — это классическая рогалик-игра с современной графикой и увлекательным геймплеем. 
+            Исследуйте случайно генерируемые подземелья, сражайтесь с монстрами и находите могущественные артефакты.
+          </p>
+        </div>
+
+        <div class="info-section">
+          <h3 class="info-title">
+            <i class="fas fa-star"></i>
+            Особенности
+          </h3>
+          <ul class="features-list">
+            <li class="feature-item">
+              <i class="fas fa-check"></i>
+              Процедурная генерация уровней
+            </li>
+            <li class="feature-item">
+              <i class="fas fa-check"></i>
+              Система перманентной смерти
+            </li>
+            <li class="feature-item">
+              <i class="fas fa-check"></i>
+              Глубокая система прокачки
+            </li>
+            <li class="feature-item">
+              <i class="fas fa-check"></i>
+              Уникальные артефакты и заклинания
+            </li>
+            <li class="feature-item">
+              <i class="fas fa-check"></i>
+              Разнообразные враги и боссы
+            </li>
+            <li class="feature-item">
+              <i class="fas fa-check"></i>
+              Атмосферный саундтрек
+            </li>
+          </ul>
+        </div>
+
+        <div class="info-section">
+          <h3 class="info-title">
+            <i class="fas fa-desktop"></i>
+            Системные требования
+          </h3>
+          <div class="system-requirements">
+            <div class="requirement">
+              <span class="req-label">ОС:</span>
+              <span class="req-value">Windows 10+, macOS, Linux</span>
+            </div>
+            <div class="requirement">
+              <span class="req-label">Процессор:</span>
+              <span class="req-value">Intel i3 или аналогичный</span>
+            </div>
+            <div class="requirement">
+              <span class="req-label">Память:</span>
+              <span class="req-value">4 GB RAM</span>
+            </div>
+            <div class="requirement">
+              <span class="req-label">Видеокарта:</span>
+              <span class="req-value">Intel HD Graphics 4000</span>
+            </div>
+            <div class="requirement">
+              <span class="req-label">Место на диске:</span>
+              <span class="req-value">2 GB</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Секция скачивания -->
+    <div class="download-section">
+      <div class="download-icon">
+        <i class="fas fa-download"></i>
+      </div>
+      <h2 class="download-title">Скачать RogueLike Adventure</h2>
+      <p class="download-text">
+        Присоединяйтесь к бета-тестированию и будьте среди первых, кто опробует нашу новую игру!
+      </p>
+
+      <!-- Прогресс разработки -->
+      <div class="progress-section">
+        <div class="progress-label">
+          <span>Прогресс разработки:</span>
+          <span>65%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+      </div>
+
+      <!-- Кнопка скачивания -->
+      <button class="btn" onclick="showDownloadMessage()" style="margin-top: 2rem;">
+        <i class="fas fa-download"></i>
+        Скачать демо-версию
+      </button>
+
+      <!-- Предупреждение -->
+      <div class="warning-banner">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div class="warning-text">Игра находится в активной разработке. Релиз запланирован на Q1 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showDownloadMessage() {
+      alert('Игра "RogueLike Adventure" находится в разработке. \n\nДемо-версия станет доступна для скачивания в ближайшее время. Следите за обновлениями!');
+    }
+
+    // Анимация прогресс-бара
+    document.addEventListener('DOMContentLoaded', function() {
+      const progressFill = document.querySelector('.progress-fill');
+      setTimeout(() => {
+        progressFill.style.width = '65%';
+      }, 500);
+    });
+  </script>
+</body>
+</html>
