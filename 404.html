@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — AlexStudio Code</title>
+    <!-- Подключение шрифта Inter для современного вида -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Ваша иконка -->
+    <link rel="shortcut icon" href="https://i.imgur.com/Svz1Ed7.png"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 20% 20%, #1a1a2e, #0a0a0f);
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        /* Контейнер с эффектом стекла */
+        .glass-container {
+            max-width: 700px;
+            width: 100%;
+            padding: 50px 40px;
+            background: rgba(20, 20, 30, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(157, 78, 221, 0.2) inset;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Огромная полупрозрачная цифра 404 на фоне */
+        .error-background-number {
+            font-size: 180px;
+            font-weight: 800;
+            line-height: 1;
+            text-align: center;
+            background: linear-gradient(135deg, #4a2f6e, #9d4edd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.3;
+            margin-bottom: -60px;
+            margin-top: -30px;
+            letter-spacing: -5px;
+            user-select: none;
+        }
+
+        /* Основной код ошибки для семантики, но визуально мы используем background-number */
+        .error-code {
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #c0b0e0, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #ffffff, #b0a0d0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .description {
+            font-size: 18px;
+            color: #a0a0b0;
+            margin-bottom: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .suggestions {
+            background: rgba(10, 10, 15, 0.5);
+            border-radius: 24px;
+            padding: 30px 25px;
+            margin: 30px 0;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            backdrop-filter: blur(4px);
+        }
+
+        .suggestions h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #c0b0e0;
+            letter-spacing: -0.3px;
+        }
+
+        /* Список действий */
+        .action-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .action-list li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 18px;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .action-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Неоновые маркеры для списка */
+        .neon-dot {
+            width: 8px;
+            height: 8px;
+            background: #9d4edd;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #9d4edd;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        /* Стили для ссылки */
+        .action-list a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .action-list a:hover {
+            color: #b87cff;
+            border-bottom-color: #9d4edd;
+            transform: translateX(5px);
+        }
+
+        /* Стрелка для ссылки */
+        .action-list a::after {
+            content: "→";
+            opacity: 0;
+            transition: opacity 0.2s, transform 0.2s;
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        .action-list a:hover::after {
+            opacity: 1;
+            transform: translateX(3px);
+        }
+
+        /* Контактный email */
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #b0a0c0;
+        }
+
+        .contact-email {
+            color: #b0a0c0;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            border-bottom: 1px dashed #4a2f6e;
+            transition: color 0.2s;
+        }
+
+        .contact-email:hover {
+            color: #d0b0ff;
+            border-bottom-color: #9d4edd;
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #606070;
+            letter-spacing: 0.5px;
+            border-top: 1px solid rgba(255,255,255,0.03);
+            padding-top: 25px;
+        }
+
+        footer p {
+            opacity: 0.7;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 600px) {
+            .glass-container {
+                padding: 30px 20px;
+            }
+            .error-background-number {
+                font-size: 120px;
+                margin-bottom: -40px;
+            }
+            h1 {
+                font-size: 32px;
+            }
+            .action-list li {
+                font-size: 16px;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-container">
+        <!-- Фоновое число для атмосферы -->
+        <div class="error-background-number">404</div>
+        
+        <!-- Основной контент -->
+        <div style="position: relative; z-index: 2;">
+            <!-- Можно оставить маленький код, но основной акцент на фоне, либо убрать -->
+            <!-- <div class="error-code">Ошибка 404</div> -->
+            
+            <h1>Потерянный<br>путь</h1>
+            
+            <p class="description">
+                Страница, которую вы ищете, перемещена, удалена или никогда не существовала. 
+                Давайте вернем вас в безопасное место.
+            </p>
+
+            <div class="suggestions">
+                <h2>Навигация</h2>
+                <ul class="action-list">
+                    <li>
+                        <span class="neon-dot"></span>
+                        <a href="/">Вернуться на главную</a>
+                    </li>
+                    <li>
+                        <span class="neon-dot"></span>
+                        <span class="contact-item">
+                            Связаться с нами: 
+                            <a href="mailto:support@alexstudiocode.ru" class="contact-email">support@alexstudiocode.ru</a>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <footer>
+                <p>© 2026 AlexStudio Code. Все права защищены.</p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
