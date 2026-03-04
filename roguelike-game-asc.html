@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="https://i.imgur.com/Svz1Ed7.png"/>
   <meta property="og:title" content="RogueLike Adventure — Скачать игру" />
   <meta property="og:description" content="Классическая рогалик-игра с процедурной генерацией подземелий, перманентной смертью и уникальными артефактами. Доступно на ПК (Windows) и мобильных устройствах (Android)." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://alexstudiocode.ru/roguelike-game-asc" />
-  <meta property="og:image" content="https://alexstudiocode.ru/logo.svg" />
+  <meta property="og:image" content="https://i.imgur.com/Svz1Ed7.png">
+  <meta property="og:logo" content="https://i.imgur.com/Svz1Ed7.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="AlexStudio Code" />
@@ -17,6 +19,8 @@
   <title>RogueLike Adventure — Скачать игру | AlexStudio Code</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    
     :root {
       --primary: #6366f1;
       --primary-dark: #4f46e5;
@@ -25,9 +29,12 @@
       --dark: #0f0f23;
       --darker: #0a0a1a;
       --light: #f8fafc;
-      --gray: #64748b;
-      --glass: rgba(255, 255, 255, 0.05);
-      --glass-border: rgba(255, 255, 255, 0.1);
+      --gray: #94a3b8;
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-hover: rgba(255, 255, 255, 0.07);
+      --neon-glow: 0 0 20px rgba(245, 158, 11, 0.3);
+      --card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
     }
 
     * {
@@ -37,22 +44,46 @@
     }
 
     body {
-      background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+      background: radial-gradient(ellipse at top, #1a1a3a, var(--darker));
       color: var(--light);
-      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-family: 'Inter', sans-serif;
       min-height: 100vh;
       line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Анимированный фон с частицами */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="90" cy="30" r="1.5" fill="rgba(245,158,11,0.1)"/><circle cx="30" cy="80" r="1" fill="rgba(99,102,241,0.1)"/><circle cx="70" cy="60" r="1.2" fill="rgba(16,185,129,0.1)"/></svg>');
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 0;
+      animation: float 20s infinite linear;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0) rotate(0deg); }
+      to { transform: translateY(-200px) rotate(10deg); }
     }
 
     .navbar {
-      background: var(--glass);
+      background: rgba(10, 10, 26, 0.8);
       backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--glass-border);
       padding: 1rem 2rem;
       position: fixed;
       top: 0;
       width: 100%;
       z-index: 1000;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     }
 
     .nav-content {
@@ -65,12 +96,19 @@
 
     .logo {
       font-size: 1.5rem;
-      font-weight: 700;
-      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      font-weight: 800;
+      background: linear-gradient(135deg, #818cf8, #34d399);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-decoration: none;
+      letter-spacing: -0.5px;
+      transition: all 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.5));
     }
 
     .back-link {
@@ -79,48 +117,70 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
       transition: all 0.3s ease;
+      font-weight: 500;
     }
 
     .back-link:hover {
-      background: var(--glass);
-      color: var(--primary);
+      background: var(--glass-hover);
+      border-color: var(--warning);
+      color: var(--warning);
+      transform: translateX(-5px);
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
     }
 
     .game-container {
-      max-width: 1000px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 120px 2rem 2rem;
+      padding: 140px 2rem 4rem;
+      position: relative;
+      z-index: 2;
     }
 
     .game-header {
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: 4rem;
     }
 
     .game-title {
-      font-size: 3rem;
+      font-size: 4rem;
       font-weight: 800;
-      background: linear-gradient(45deg, #f59e0b, #d97706);
+      background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       margin-bottom: 1rem;
+      text-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
+      letter-spacing: -1px;
+      animation: glow 3s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% { filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.3)); }
+      50% { filter: drop-shadow(0 0 40px rgba(245, 158, 11, 0.6)); }
     }
 
     .game-subtitle {
       font-size: 1.25rem;
       color: var(--gray);
-      max-width: 600px;
+      max-width: 700px;
       margin: 0 auto;
+      line-height: 1.8;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      backdrop-filter: blur(5px);
+      border: 1px solid var(--glass-border);
     }
 
     .game-content {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 3rem;
+      gap: 2rem;
       margin-bottom: 3rem;
     }
 
@@ -132,37 +192,82 @@
 
     .game-screenshot {
       background: var(--glass);
+      backdrop-filter: blur(10px);
       border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      padding: 2rem;
+      border-radius: 30px;
+      padding: 3rem 2rem;
       text-align: center;
-      min-height: 300px;
+      min-height: 400px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      box-shadow: var(--card-shadow);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-screenshot::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.6s;
+    }
+
+    .game-screenshot:hover {
+      transform: translateY(-10px) scale(1.02);
+      border-color: rgba(245, 158, 11, 0.3);
+      box-shadow: 0 30px 60px -15px rgba(245, 158, 11, 0.3);
+    }
+
+    .game-screenshot:hover::before {
+      opacity: 1;
     }
 
     .screenshot-placeholder {
-      font-size: 4rem;
+      font-size: 5rem;
       color: var(--warning);
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.5));
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
     }
 
     .screenshot-text {
       color: var(--gray);
-      font-size: 1rem;
+      font-size: 1.1rem;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      border: 1px dashed rgba(245, 158, 11, 0.3);
     }
 
     .game-info {
       background: var(--glass);
+      backdrop-filter: blur(10px);
       border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      padding: 2rem;
+      border-radius: 30px;
+      padding: 2.5rem;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.3s ease;
+    }
+
+    .game-info:hover {
+      transform: translateY(-5px);
     }
 
     .info-section {
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
 
     .info-section:last-child {
@@ -170,50 +275,70 @@
     }
 
     .info-title {
-      font-size: 1.25rem;
-      font-weight: 600;
+      font-size: 1.5rem;
+      font-weight: 700;
       color: var(--light);
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.8rem;
+      border-bottom: 2px solid rgba(245, 158, 11, 0.3);
+      padding-bottom: 0.8rem;
     }
 
     .info-title i {
       color: var(--warning);
+      font-size: 1.5rem;
     }
 
     .features-list {
       list-style: none;
       display: grid;
-      gap: 0.5rem;
+      gap: 1rem;
     }
 
     .feature-item {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      padding: 0.5rem 0;
-      color: var(--light);
+      gap: 1rem;
+      padding: 0.7rem 1rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    .feature-item:hover {
+      background: rgba(245, 158, 11, 0.1);
+      border-color: rgba(245, 158, 11, 0.3);
+      transform: translateX(10px);
     }
 
     .feature-item i {
       color: var(--secondary);
-      width: 20px;
+      width: 24px;
+      font-size: 1.2rem;
     }
 
     .system-requirements {
-      background: rgba(245, 158, 11, 0.1);
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(16, 185, 129, 0.05));
       border: 1px solid rgba(245, 158, 11, 0.2);
-      border-radius: 12px;
+      border-radius: 20px;
       padding: 1.5rem;
     }
 
     .requirement {
       display: flex;
-      justify-content: between;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      justify-content: space-between;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.2s ease;
+    }
+
+    .requirement:hover {
+      padding-left: 10px;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 8px;
     }
 
     .requirement:last-child {
@@ -222,22 +347,27 @@
 
     .req-label {
       color: var(--gray);
-      flex: 1;
+      font-weight: 500;
+      letter-spacing: 0.3px;
     }
 
     .req-value {
       color: var(--light);
       font-weight: 600;
+      text-align: right;
     }
 
     .download-section {
-      background: var(--glass);
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(99, 102, 241, 0.1));
+      backdrop-filter: blur(10px);
       border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      padding: 3rem;
+      border-radius: 40px;
+      padding: 4rem 3rem;
       text-align: center;
       position: relative;
       overflow: hidden;
+      box-shadow: var(--card-shadow);
+      margin-top: 3rem;
     }
 
     .download-section::before {
@@ -247,105 +377,173 @@
       left: 0;
       right: 0;
       height: 4px;
-      background: linear-gradient(45deg, var(--warning), #d97706);
+      background: linear-gradient(90deg, transparent, var(--warning), #d97706, transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .download-section::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
     .download-icon {
-      font-size: 4rem;
+      font-size: 5rem;
       color: var(--warning);
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      filter: drop-shadow(0 0 30px rgba(245, 158, 11, 0.5));
+      animation: bounce 2s ease-in-out infinite;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
     }
 
     .download-title {
-      font-size: 2rem;
-      font-weight: 700;
+      font-size: 2.5rem;
+      font-weight: 800;
       color: var(--light);
       margin-bottom: 1rem;
+      text-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+      position: relative;
+      z-index: 2;
     }
 
     .download-text {
       color: var(--gray);
-      margin-bottom: 2rem;
-      font-size: 1.125rem;
+      margin-bottom: 2.5rem;
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 2;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      padding: 1rem 2rem;
-      background: linear-gradient(45deg, var(--warning), #d97706);
+      gap: 1rem;
+      padding: 1.2rem 3rem;
+      background: linear-gradient(45deg, #f59e0b, #d97706);
       color: white;
       text-decoration: none;
-      border-radius: 12px;
-      font-weight: 600;
-      transition: all 0.3s ease;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       border: none;
       cursor: pointer;
-      font-size: 1.125rem;
-      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+      box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+      position: relative;
+      z-index: 2;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      letter-spacing: 0.5px;
     }
 
     .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(245, 158, 11, 0.6);
     }
 
-    .btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
+    .btn:active {
+      transform: translateY(0) scale(0.95);
     }
 
-    .btn:disabled:hover {
-      transform: none;
-      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    .progress-section {
+      margin-top: 3rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .progress-label {
+      color: var(--gray);
+      margin-bottom: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+    }
+
+    .progress-bar {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 100px;
+      height: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .progress-fill {
+      background: linear-gradient(90deg, #f59e0b, #d97706, #f59e0b);
+      height: 100%;
+      width: 65%;
+      border-radius: 100px;
+      transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      animation: shimmer 2s infinite;
     }
 
     .warning-banner {
       background: rgba(239, 68, 68, 0.1);
       border: 1px solid rgba(239, 68, 68, 0.3);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-top: 2rem;
+      border-radius: 50px;
+      padding: 1.5rem 2rem;
+      margin-top: 3rem;
       text-align: center;
+      backdrop-filter: blur(10px);
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
     .warning-banner i {
       color: #ef4444;
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
+      font-size: 2rem;
+      filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.5));
     }
 
     .warning-text {
       color: #fca5a5;
       font-weight: 600;
-    }
-
-    .progress-section {
-      margin-top: 2rem;
-    }
-
-    .progress-label {
-      color: var(--gray);
-      margin-bottom: 0.5rem;
-      display: flex;
-      justify-content: between;
-    }
-
-    .progress-bar {
-      background: var(--glass);
-      border-radius: 10px;
-      height: 8px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      background: linear-gradient(45deg, var(--warning), #d97706);
-      height: 100%;
-      width: 65%;
-      border-radius: 10px;
-      transition: width 0.3s ease;
+      font-size: 1.1rem;
     }
 
     /* Анимации */
@@ -361,7 +559,25 @@
     }
 
     .game-content, .download-section {
-      animation: fadeInUp 0.6s ease;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    /* Кастомный скроллбар */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--darker);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(45deg, #f59e0b, #d97706);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(45deg, #d97706, #b45309);
     }
   </style>
 </head>
@@ -401,7 +617,7 @@
             <i class="fas fa-info-circle"></i>
             Об игре
           </h3>
-          <p style="color: var(--light); line-height: 1.6;">
+          <p style="color: var(--light); line-height: 1.8; font-size: 1.1rem;">
             RogueLike Adventure — это классическая рогалик-игра с современной графикой и увлекательным геймплеем. 
             Исследуйте случайно генерируемые подземелья, сражайтесь с монстрами и находите могущественные артефакты.
           </p>
@@ -414,68 +630,70 @@
           </h3>
           <ul class="features-list">
             <li class="feature-item">
-              <i class="fas fa-check"></i>
+              <i class="fas fa-check-circle"></i>
               Процедурная генерация уровней
             </li>
             <li class="feature-item">
-              <i class="fas fa-check"></i>
+              <i class="fas fa-check-circle"></i>
               Система перманентной смерти
             </li>
             <li class="feature-item">
-              <i class="fas fa-check"></i>
+              <i class="fas fa-check-circle"></i>
               Глубокая система прокачки
             </li>
             <li class="feature-item">
-              <i class="fas fa-check"></i>
+              <i class="fas fa-check-circle"></i>
               Уникальные артефакты и заклинания
             </li>
             <li class="feature-item">
-              <i class="fas fa-check"></i>
+              <i class="fas fa-check-circle"></i>
               Разнообразные враги и боссы
             </li>
             <li class="feature-item">
-              <i class="fas fa-check"></i>
+              <i class="fas fa-check-circle"></i>
               Атмосферный саундтрек
             </li>
           </ul>
         </div>
 
-    <div class="info-section">
-    <h3 class="info-title">
-      <i class="fas fa-desktop"></i>
-      Системные требования
-    </h3>
-    <div class="system-requirements">
-      <div class="requirement">
-        <span class="req-label">Платформы:</span>
-        <span class="req-value">Windows, Android</span>
-      </div>
-      <div class="requirement">
-        <span class="req-label">ОС (ПК):</span>
-        <span class="req-value">Windows 10+</span>
-      </div>
-      <div class="requirement">
-        <span class="req-label">ОС (Android):</span>
-        <span class="req-value">Android 8.0+</span>
-      </div>
-      <div class="requirement">
-        <span class="req-label">Процессор:</span>
-        <span class="req-value">Intel i3 или Snapdragon 660</span>
-      </div>
-      <div class="requirement">
-        <span class="req-label">Память:</span>
-        <span class="req-value">4 GB RAM</span>
-      </div>
-      <div class="requirement">
-        <span class="req-label">Видеокарта:</span>
-        <span class="req-value">Intel HD Graphics 4000 / Adreno 512</span>
-      </div>
-      <div class="requirement">
-        <span class="req-label">Место на диске:</span>
-        <span class="req-value">50 MB</span>
+        <div class="info-section">
+          <h3 class="info-title">
+            <i class="fas fa-desktop"></i>
+            Системные требования
+          </h3>
+          <div class="system-requirements">
+            <div class="requirement">
+              <span class="req-label">Платформы:</span>
+              <span class="req-value">Windows, Android</span>
+            </div>
+            <div class="requirement">
+              <span class="req-label">ОС (ПК):</span>
+              <span class="req-value">Windows 10+</span>
+            </div>
+            <div class="requirement">
+              <span class="req-label">ОС (Android):</span>
+              <span class="req-value">Android 8.0+</span>
+            </div>
+            <div class="requirement">
+              <span class="req-label">Процессор:</span>
+              <span class="req-value">Intel i3 / Snapdragon 660</span>
+            </div>
+            <div class="requirement">
+              <span class="req-label">Память:</span>
+              <span class="req-value">4 GB RAM</span>
+            </div>
+            <div class="requirement">
+              <span class="req-label">Видеокарта:</span>
+              <span class="req-value">Intel HD / Adreno 512</span>
+            </div>
+            <div class="requirement">
+              <span class="req-label">Место:</span>
+              <span class="req-value">50 MB</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
     <!-- Секция скачивания -->
     <div class="download-section">
@@ -490,7 +708,7 @@
       <!-- Прогресс разработки -->
       <div class="progress-section">
         <div class="progress-label">
-          <span>Прогресс разработки:</span>
+          <span>Прогресс разработки</span>
           <span>65%</span>
         </div>
         <div class="progress-bar">
@@ -499,7 +717,7 @@
       </div>
 
       <!-- Кнопка скачивания -->
-      <button class="btn" onclick="showDownloadMessage()" style="margin-top: 2rem;">
+      <button class="btn" onclick="showDownloadMessage()" style="margin-top: 2.5rem;">
         <i class="fas fa-download"></i>
         Скачать демо-версию
       </button>
@@ -517,12 +735,19 @@
       alert('Игра "RogueLike Adventure" находится в разработке. \n\nДемо-версия станет доступна для скачивания в ближайшее время. Следите за обновлениями!');
     }
 
-    // Анимация прогресс-бара
+    // Плавная анимация прогресс-бара при загрузке
     document.addEventListener('DOMContentLoaded', function() {
       const progressFill = document.querySelector('.progress-fill');
       setTimeout(() => {
         progressFill.style.width = '65%';
       }, 500);
+    });
+
+    // Добавляем параллакс эффект для фона
+    document.addEventListener('mousemove', function(e) {
+      const moveX = (e.clientX / window.innerWidth - 0.5) * 20;
+      const moveY = (e.clientY / window.innerHeight - 0.5) * 20;
+      document.body.style.backgroundPosition = `${moveX}px ${moveY}px`;
     });
   </script>
 </body>
