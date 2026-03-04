@@ -42,18 +42,28 @@
             color: var(--light);
             line-height: 1.6;
             min-height: 100vh;
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
         }
         
         /* Навигация */
         .policy-nav {
             background: var(--glass);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border);
             padding: 1rem 2rem;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
+            will-change: transform;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
         }
         
         .nav-content {
@@ -74,6 +84,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-decoration: none;
+            white-space: nowrap;
         }
         
         .back-btn {
@@ -126,6 +137,7 @@
         .policy-content {
             background: var(--glass);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             border-radius: 16px;
             padding: 40px;
@@ -222,8 +234,16 @@
             color: var(--primary);
         }
         
-        /* Адаптивность для мобильных */
+        /* Адаптивность для мобильных - ИСПРАВЛЕНО */
         @media (max-width: 768px) {
+            /* Отключаем backdrop-filter на мобильных */
+            .policy-nav, 
+            .policy-content {
+                -webkit-backdrop-filter: none !important;
+                backdrop-filter: none !important;
+                background: rgba(10, 10, 26, 0.98) !important;
+            }
+            
             .container {
                 margin: 80px auto 30px;
                 padding: 0 15px;
@@ -238,17 +258,40 @@
             }
             
             .nav-content {
-                flex-direction: column;
-                justify-content: center;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.5rem;
             }
             
             .back-btn {
-                padding: 0.6rem 1.2rem;
+                padding: 0.5rem 1rem;
                 font-size: 0.9rem;
+            }
+            
+            .back-btn span {
+                display: none;
+            }
+            
+            .back-btn i {
+                margin: 0;
+                font-size: 1.2rem;
             }
             
             h2 {
                 font-size: 1.3rem;
+            }
+            
+            .policy-content {
+                overflow-x: hidden;
+                width: 100%;
+            }
+            
+            .policy-content ul,
+            .policy-content p,
+            .policy-content div {
+                max-width: 100%;
+                word-wrap: break-word;
             }
         }
         
@@ -261,20 +304,23 @@
                 font-size: 1.6rem;
             }
             
+            .logo {
+                font-size: 1.2rem;
+            }
+            
             .footer-links {
                 flex-direction: column;
                 gap: 10px;
             }
-        }
 
-        @media (max-width: 768px) {
-        .policy-nav, 
-        .policy-content {
-            -webkit-backdrop-filter: none !important;
-            backdrop-filter: none !important;
-            background: rgba(10, 10, 26, 0.98) !important;
+            .policy-content {
+                overflow-x: hidden;
+            }
+            
+            .policy-content ul {
+                padding-left: 20px;
+            }
         }
-    }
     </style>
 </head>
 <body>
@@ -285,7 +331,7 @@
         <a href="/" class="logo">AlexStudio Code</a>
         <a href="/" class="back-btn">
             <i class="fas fa-arrow-left"></i>
-            На главную
+            <span>На главную</span>
         </a>
     </div>
 </nav>
