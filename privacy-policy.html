@@ -236,64 +236,71 @@
         
         /* Адаптивность для мобильных - ИСПРАВЛЕНО */
         @media (max-width: 768px) {
-            /* Отключаем backdrop-filter на мобильных */
-            .policy-nav, 
-            .policy-content {
-                -webkit-backdrop-filter: none !important;
-                backdrop-filter: none !important;
-                background: rgba(10, 10, 26, 0.98) !important;
-            }
-            
-            .container {
-                margin: 80px auto 30px;
-                padding: 0 15px;
-            }
-            
-            .page-title {
-                font-size: 2rem;
-            }
-            
-            .policy-content {
-                padding: 25px;
-            }
-            
-            .nav-content {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                gap: 0.5rem;
-            }
-            
-            .back-btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.9rem;
-            }
-            
-            .back-btn span {
-                display: none;
-            }
-            
-            .back-btn i {
-                margin: 0;
-                font-size: 1.2rem;
-            }
-            
-            h2 {
-                font-size: 1.3rem;
-            }
-            
-            .policy-content {
-                overflow-x: hidden;
-                width: 100%;
-            }
-            
-            .policy-content ul,
-            .policy-content p,
-            .policy-content div {
-                max-width: 100%;
-                word-wrap: break-word;
-            }
-        }
+    /* Отключаем backdrop-filter на мобильных */
+    .policy-nav, 
+    .policy-content {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        background: rgba(10, 10, 26, 0.98) !important;
+    }
+    
+    .container {
+        margin: 80px auto 30px;
+        padding: 0 15px;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .policy-content {
+        padding: 25px;
+    }
+    
+    /* ВОТ ЭТОТ БЛОК - ИСПРАВЛЕННЫЙ */
+    .nav-content {
+        flex-direction: row;  /* ← ОДНА ЛИНИЯ */
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+    }
+    
+    .back-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .back-btn span {
+        display: none; /* прячем текст на телефонах */
+    }
+    
+    .back-btn i {
+        margin: 0;
+        font-size: 1.2rem;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+        white-space: nowrap;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    .policy-content {
+        overflow-x: hidden;
+        width: 100%;
+    }
+    
+    .policy-content ul,
+    .policy-content p,
+    .policy-content div {
+        max-width: 100%;
+        word-wrap: break-word;
+    }
+}
         
         @media (max-width: 480px) {
             .policy-content {
