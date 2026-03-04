@@ -250,6 +250,17 @@
             h2 {
                 font-size: 1.3rem;
             }
+            .policy-content {
+                overflow-x: hidden;
+                width: 100%;
+            }
+            
+            .policy-content ul,
+            .policy-content p,
+            .policy-content div {
+                max-width: 100%;
+                word-wrap: break-word;
+            }
         }
         
         @media (max-width: 480px) {
@@ -265,6 +276,15 @@
                 flex-direction: column;
                 gap: 10px;
             }
+
+            .policy-content {
+                overflow-x: hidden;
+            }
+            
+            .policy-content ul {
+                padding-left: 20px;
+            }
+
         }
     </style>
 </head>
