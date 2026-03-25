@@ -127,4 +127,4 @@ Disallow: /admin/
 Disallow: /wp-
 Disallow: /*.php$
 
-Sitemap: https://alexstudiocode.ru/map
+Sitemap: https://alexstudiocode.ru/sitemap.xml
