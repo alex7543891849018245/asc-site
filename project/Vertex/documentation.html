@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Vertex | Документация — все команды бота</title>
+    <meta name="description" content="Полная документация бота Vertex: все команды модерации, наказаний, экономики, профилей и настроек.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #09090b;
+            color: #e4e4e7;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(circle at 15% 30%, rgba(88, 28, 135, 0.2), #09090b 70%);
+        }
+
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 85% 70%, rgba(59, 130, 246, 0.08), transparent 65%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Хедер */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 40px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #a855f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .badge {
+            background: rgba(168, 85, 247, 0.12);
+            border: 1px solid rgba(168, 85, 247, 0.25);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #c084fc;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: #a1a1aa;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #a855f7;
+        }
+
+        /* Бургер */
+        .burger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+
+        .burger span {
+            width: 28px;
+            height: 2px;
+            background: #e4e4e7;
+            transition: all 0.3s;
+            border-radius: 2px;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            max-width: 280px;
+            height: 100vh;
+            background: #0f0f12;
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 80px 28px;
+            transition: right 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .mobile-menu a {
+            color: #e4e4e7;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .mobile-menu.open {
+            right: 0;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            display: none;
+        }
+
+        /* Заголовок страницы */
+        .page-header {
+            margin-bottom: 48px;
+        }
+
+        .page-header h1 {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #a855f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 16px;
+        }
+
+        .page-header p {
+            color: #a1a1aa;
+            font-size: 18px;
+        }
+
+        /* Секции команд */
+        .section {
+            margin-bottom: 56px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            border-left: 4px solid #7c3aed;
+            padding-left: 20px;
+        }
+
+        .commands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+        }
+
+        .command-card {
+            background: rgba(24, 24, 27, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 20px;
+            transition: all 0.2s;
+        }
+
+        .command-card:hover {
+            border-color: rgba(168, 85, 247, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .command-name {
+            font-family: 'Monaco', 'Menlo', monospace;
+            background: #1a1a2a;
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #c084fc;
+            margin-bottom: 12px;
+        }
+
+        .command-desc {
+            font-size: 14px;
+            color: #c0c0c0;
+            margin-bottom: 12px;
+        }
+
+        .command-example {
+            font-family: monospace;
+            font-size: 12px;
+            background: #0a0a0f;
+            padding: 8px 12px;
+            border-radius: 12px;
+            color: #86efac;
+            margin-top: 12px;
+            border: 1px solid #2a2a3a;
+        }
+
+        .rank-tag {
+            display: inline-block;
+            background: #2a2a3a;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 500;
+            color: #aaa;
+            margin-top: 8px;
+        }
+
+        /* Блок с указанием пользователя */
+        .info-block {
+            background: rgba(24, 24, 27, 0.4);
+            border-radius: 24px;
+            padding: 24px;
+            margin: 32px 0;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .info-block h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #c084fc;
+        }
+
+        .info-block ul {
+            margin-left: 20px;
+            color: #a1a1aa;
+        }
+
+        .info-block li {
+            margin-bottom: 8px;
+        }
+
+        /* Футер */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 48px 0 32px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand .logo-small {
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #a855f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+        }
+
+        .footer-brand p {
+            font-size: 13px;
+            color: #71717a;
+            max-width: 260px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links-column h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #e4e4e7;
+        }
+
+        .footer-links-column a {
+            display: block;
+            color: #71717a;
+            text-decoration: none;
+            font-size: 13px;
+            margin-bottom: 10px;
+            transition: color 0.2s;
+        }
+
+        .footer-links-column a:hover {
+            color: #a855f7;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 12px;
+            color: #52525b;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .copyright a {
+            color: #a855f7;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .burger {
+                display: flex;
+            }
+            .page-header h1 {
+                font-size: 32px;
+            }
+            .container {
+                padding: 0 20px;
+            }
+            .commands-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                flex-direction: column;
+                gap: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="gradient-bg"></div>
+<div class="overlay" id="overlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#moderation">Модерация</a>
+    <a href="#punishments">Наказания</a>
+    <a href="#profile">Профиль</a>
+    <a href="#economy">Экономика</a>
+    <a href="#clean">Чистка</a>
+    <a href="#fun">Развлечения</a>
+    <a href="#settings">Настройки</a>
+    <a href="index.html">Главная</a>
+    <a href="https://github.com/alexstudio/vertex-bot" target="_blank">GitHub</a>
+</div>
+
+<div class="container">
+    <div class="header">
+        <div class="logo-area">
+            <div class="logo">Vertex</div>
+            <div class="badge">Документация</div>
+        </div>
+        <div class="nav-links">
+            <a href="#moderation">Модерация</a>
+            <a href="#punishments">Наказания</a>
+            <a href="#profile">Профиль</a>
+            <a href="#economy">Экономика</a>
+            <a href="#clean">Чистка</a>
+            <a href="#fun">Развлечения</a>
+            <a href="#settings">Настройки</a>
+            <a href="index.html">Главная</a>
+            <a href="https://github.com/alexstudio/vertex-bot" target="_blank">GitHub</a>
+        </div>
+        <button class="burger" id="burgerBtn">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+
+    <div class="page-header">
+        <h1>📖 Полная документация</h1>
+        <p>Все команды бота Vertex с примерами и описанием требуемых рангов.</p>
+    </div>
+
+    <!-- Модерация -->
+    <div class="section" id="moderation">
+        <h2 class="section-title">👑 Управление модерацией</h2>
+        <div class="commands-grid">
+            <div class="command-card"><div class="command-name">!модер @user</div><div class="command-desc">Назначить младшим модератором (ранг 1).</div><div class="command-example">!модер @ivan</div><div class="rank-tag">🔒 требуется ранг 5</div></div>
+            <div class="command-card"><div class="command-name">!модер2 @user</div><div class="command-desc">Назначить старшим модератором (ранг 2).</div><div class="command-example">!модер2 @petr</div><div class="rank-tag">🔒 требуется ранг 5</div></div>
+            <div class="command-card"><div class="command-name">!модер3 @user</div><div class="command-desc">Назначить администратором (ранг 3).</div><div class="command-example">!модер3 @alex</div><div class="rank-tag">🔒 требуется ранг 5</div></div>
+            <div class="command-card"><div class="command-name">!модер4 @user</div><div class="command-desc">Назначить старшим администратором (ранг 4).</div><div class="command-example">!модер4 @boss</div><div class="rank-tag">🔒 требуется ранг 5</div></div>
+            <div class="command-card"><div class="command-name">!снять @user</div><div class="command-desc">Снять любую модераторскую роль.</div><div class="command-example">!снять @ivan</div><div class="rank-tag">🔒 требуется ранг 5</div></div>
+            <div class="command-card"><div class="command-name">!кто админ</div><div class="command-desc">Список всех модераторов чата с онлайном.</div><div class="command-example">!кто админ</div><div class="rank-tag">👥 для всех</div></div>
+            <div class="command-card"><div class="command-name">!синхронизация</div><div class="command-desc">Синхронизировать Telegram-админов с ботом.</div><div class="command-example">!синхронизация</div><div class="rank-tag">🔒 ранг 5</div></div>
+        </div>
+    </div>
+
+    <!-- Наказания -->
+    <div class="section" id="punishments">
+        <h2 class="section-title">🔨 Наказания</h2>
+        <div class="commands-grid">
+            <div class="command-card"><div class="command-name">!бан @user [срок] [причина]</div><div class="command-desc">Заблокировать. По умолчанию навсегда.</div><div class="command-example">!бан @spamer 7d реклама</div><div class="rank-tag">🔒 ранг 2+</div></div>
+            <div class="command-card"><div class="command-name">!разбан @user</div><div class="command-desc">Снять блокировку.</div><div class="command-example">!разбан @spamer</div><div class="rank-tag">🔒 ранг 2+</div></div>
+            <div class="command-card"><div class="command-name">!мут @user [срок] [причина]</div><div class="command-desc">Заглушить (не может писать).</div><div class="command-example">!мут @flooder 1h флуд</div><div class="rank-tag">🔒 ранг 1+</div></div>
+            <div class="command-card"><div class="command-name">!размут @user</div><div class="command-desc">Снять мут.</div><div class="command-example">!размут @flooder</div><div class="rank-tag">🔒 ранг 1+</div></div>
+            <div class="command-card"><div class="command-name">!кик @user</div><div class="command-desc">Исключить из чата (может вернуться).</div><div class="command-example">!кик @guest</div><div class="rank-tag">🔒 ранг 1+</div></div>
+            <div class="command-card"><div class="command-name">!варн @user [причина]</div><div class="command-desc">Выдать предупреждение. При лимите → автобан.</div><div class="command-example">!варн @user оскорбление</div><div class="rank-tag">🔒 ранг 1+</div></div>
+            <div class="command-card"><div class="command-name">!варны @user</div><div class="command-desc">Список активных предупреждений.</div><div class="command-example">!варны @user</div><div class="rank-tag">👥 для всех</div></div>
+            <div class="command-card"><div class="command-name">!снятьварн @user</div><div class="command-desc">Снять последнее предупреждение.</div><div class="command-example">!снятьварн @user</div><div class="rank-tag">🔒 ранг 2+</div></div>
+        </div>
+        <div class="info-block">
+            <h3>⏱ Форматы срока</h3>
+            <ul>
+                <li><code>30m</code> — 30 минут</li>
+                <li><code>2h</code> — 2 часа</li>
+                <li><code>7d</code> — 7 дней</li>
+                <li><code>2w</code> — 2 недели</li>
+                <li><code>1д</code> — 1 день (русский вариант)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Профиль -->
+    <div class="section" id="profile">
+        <h2 class="section-title">📝 Анкета и профиль</h2>
+        <div class="commands-grid">
+            <div class="command-card"><div class="command-name">!ник [текст]</div><div class="command-desc">Установить ник (до 30 символов) в текущем чате.</div><div class="command-example">!ник Легенда</div><div class="rank-tag">👥 для всех</div></div>
+            <div class="command-card"><div class="command-name">!удалитьник</div><div class="command-desc">Удалить ник.</div><div class="command-example">!удалитьник</div><div class="rank-tag">👥 для всех</div></div>
+            <div class="command-card"><div class="command-name">!звание [текст]</div><div class="command-desc">Установить звание (отображается в профиле).</div><div class="command-example">!звание Хранитель</div><div class="rank-tag">👥 для всех</div></div>
+            <div class="command-card"><div class="command-name">!о себе [текст]</div><div class="command-desc">Рассказать о себе (до 3800 символов).</div><div class="command-example">!о себе Люблю Python и чат-ботов</div><div class="rank-tag">👥 для всех</div></div>
+            <div class="command-card"><div class="command-name">!профиль [@user]</div><div class="command-desc">Показать анкету (ник, звание, ранг, ириски).</div><div class="command-example">!профиль @friend</div><div class="rank-tag">👥 для всех</div></div>
+            <div class="command-card"><div class="command-name">!моястата</div><div class="command-desc">Ваша активность за последние 30 дней.</div><div class="command-example">!моястата</div><div class="rank-tag">👥 для всех</div></div>
+        </div>
+    </div>
+
+    <!-- Экономика -->
+    <div class="section" id="economy">
+        <h2 class="section-title">🍬 Валюта — ириски</h2>
+        <div class="commands-grid">
+            <div class="command-card"><div class="command-name">!ириски</div><div class="command-desc">Текущий баланс ирисок.</div><div class="command-example">!ириски</div><div class="rank-tag">👥 для всех</div></div>
+            <div class="command-card"><div class="command-name">!передать [сумма] @user</div><div class="command-desc">Передать ириски другому участнику.</div><div class="command-example">!передать 50 @friend</div><div class="rank-tag">👥 для всех</div></div>
+            <div class="command-card"><div class="command-name">!ферма</div><div class="command-desc">Собрать урожай (от 5 до 25 ирисок раз в 4 часа).</div><div class="command-example">!ферма</div><div class="rank-tag">👥 для всех</div></div>
+        </div>
+    </div>
+
+    <!-- Чистка -->
+    <div class="section" id="clean">
+        <h2 class="section-title">🧹 Чистка чата</h2>
+        <div class="commands-grid">
+            <div class="command-card"><div class="command-name">!-смс</div><div class="command-desc">Удалить выбранное сообщение (ответом).</div><div class="command-example">(ответ на сообщение) !-смс</div><div class="rank-tag">🔒 ранг 1+</div></div>
+            <div class="command-card"><div class="command-name">!-смс 10</div><div class="command-desc">Удалить последние N сообщений (максимум 100).</div><div class="command-example">!-смс 15</div><div class="rank-tag">🔒 ранг 1+</div></div>
+        </div>
+    </div>
+
+    <!-- Развлечения -->
+    <div class="section" id="fun">
+        <h2 class="section-title">🎲 Игры и случайности</h2>
+        <div class="commands-grid">
+            <div class="command-card"><div class="command-name">!рандом 100</div><div class="command-desc">Случайное число от 0 до 100.</div><div class="command-example">!рандом 50</div><div class="rank-tag">👥 для всех</div></div>
+            <div class="command-card"><div class="command-name">!рандом 1 100</div><div class="command-desc">Случайное число в заданном диапазоне.</div><div class="command-example">!рандом 10 20</div><div class="rank-tag">👥 для всех</div></div>
+            <div class="command-card"><div class="command-name">!данет [вопрос]</div><div class="command-desc">Ответ да/нет/возможно.</div><div class="command-example">!данет Бот крутой?</div><div class="rank-tag">👥 для всех</div></div>
+            <div class="command-card"><div class="command-name">!пинг</div><div class="command-desc">Проверка работоспособности бота.</div><div class="command-example">!пинг</div><div class="rank-tag">👥 для всех</div></div>
+        </div>
+    </div>
+
+    <!-- Настройки -->
+    <div class="section" id="settings">
+        <h2 class="section-title">⚙️ Настройки (только создатель чата)</h2>
+        <div class="commands-grid">
+            <div class="command-card"><div class="command-name">!варнылимит [число]</div><div class="command-desc">Установить количество варнов до автобана (по умолчанию 3).</div><div class="command-example">!варнылимит 5</div><div class="rank-tag">🔒 ранг 5</div></div>
+            <div class="command-card"><div class="command-name">!варнычс [срок]</div><div class="command-desc">Срок бана после превышения лимита предупреждений.</div><div class="command-example">!варнычс 14d</div><div class="rank-tag">🔒 ранг 5</div></div>
+        </div>
+    </div>
+
+    <!-- Инфо -->
+    <div class="section" id="info">
+        <h2 class="section-title">ℹ️ Общая информация</h2>
+        <div class="commands-grid">
+            <div class="command-card"><div class="command-name">!чатинфо</div><div class="command-desc">Статистика чата: название, количество участников, модераторов.</div><div class="command-example">!чатинфо</div><div class="rank-tag">👥 для всех</div></div>
+            <div class="command-card"><div class="command-name">/start</div><div class="command-desc">Приветственное сообщение со ссылкой на документацию.</div><div class="command-example">/start</div><div class="rank-tag">👥 для всех</div></div>
+        </div>
+    </div>
+
+    <!-- Блок с указанием пользователя -->
+    <div class="info-block">
+        <h3>🎯 Как указать пользователя в командах наказания</h3>
+        <ul>
+            <li><strong>@username</strong> — <code>!бан @ivan 7d спам</code></li>
+            <li><strong>Telegram ID</strong> — <code>!мут 123456789 1h</code></li>
+            <li><strong>Ответ на сообщение</strong> — нажать «ответ» на сообщение нарушителя и написать <code>!мут 1h флуд</code></li>
+        </ul>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo-small">Vertex</div>
+                <p>Современный чат-менеджер для Telegram-сообществ. Модерация, экономика, аналитика — всё в одном боте.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-links-column">
+                    <h4>Навигация</h4>
+                    <a href="#moderation">Модерация</a>
+                    <a href="#punishments">Наказания</a>
+                    <a href="#profile">Профиль</a>
+                    <a href="#economy">Экономика</a>
+                    <a href="#clean">Чистка</a>
+                    <a href="#fun">Развлечения</a>
+                </div>
+                <div class="footer-links-column">
+                    <h4>Проект</h4>
+                    <a href="/">Главная</a>
+                    <a href="https://github.com/alexstudio/vertex-bot" target="_blank">GitHub</a>
+                    <a href="https://alexstudiocode.ru" target="_blank">AlexStudioCode</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 Vertex | Чат-менеджер. Студия разработки <a href="https://alexstudiocode.ru" target="_blank">AlexStudioCode</a>
+        </div>
+    </footer>
+</div>
+
+<script>
+    const burger = document.getElementById('burgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const overlay = document.getElementById('overlay');
+
+    function toggleMenu() {
+        mobileMenu.classList.toggle('open');
+        overlay.style.display = mobileMenu.classList.contains('open') ? 'block' : 'none';
+        document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    }
+
+    burger.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+        link.addEventListener('click', toggleMenu);
+    });
+</script>
+</body>
+</html>
