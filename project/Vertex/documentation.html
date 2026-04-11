@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Vertex | Документация — все команды бота</title>
-    <meta name="description" content="Полная документация бота Vertex: все команды модерации, наказаний, экономики, профилей и настроек.">
+    <meta name="description" content="Полная документация бота Vertex: все команды модерации, наказаний, экономики, подарков, казино и настроек.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
@@ -50,7 +50,6 @@
             padding: 0 24px;
         }
 
-        /* Хедер */
         .header {
             display: flex;
             justify-content: space-between;
@@ -103,7 +102,6 @@
             color: #a855f7;
         }
 
-        /* Бургер */
         .burger {
             display: none;
             flex-direction: column;
@@ -165,7 +163,6 @@
             display: none;
         }
 
-        /* Заголовок страницы */
         .page-header {
             margin-bottom: 48px;
         }
@@ -185,7 +182,6 @@
             font-size: 18px;
         }
 
-        /* Секции команд */
         .section {
             margin-bottom: 56px;
         }
@@ -270,7 +266,6 @@
             margin-left: 8px;
         }
 
-        /* Блок с указанием пользователя */
         .info-block {
             background: rgba(24, 24, 27, 0.4);
             border-radius: 24px;
@@ -294,7 +289,6 @@
             margin-bottom: 8px;
         }
 
-        /* Футер */
         footer {
             border-top: 1px solid rgba(255, 255, 255, 0.06);
             padding: 48px 0 32px;
@@ -418,7 +412,8 @@
     <a href="#punishments">Наказания</a>
     <a href="#profile">Профиль</a>
     <a href="#economy">Экономика</a>
-    <a href="#currency-spend">Траты</a>
+    <a href="#gifts">Подарки</a>
+    <a href="#casino">Казино</a>
     <a href="#access">Доступ</a>
     <a href="#clean">Чистка</a>
     <a href="#fun">Развлечения</a>
@@ -438,7 +433,8 @@
             <a href="#punishments">Наказания</a>
             <a href="#profile">Профиль</a>
             <a href="#economy">Экономика</a>
-            <a href="#currency-spend">Траты</a>
+            <a href="#gifts">Подарки</a>
+            <a href="#casino">Казино</a>
             <a href="#access">Доступ</a>
             <a href="#clean">Чистка</a>
             <a href="#fun">Развлечения</a>
@@ -465,8 +461,7 @@
             <div class="command-card"><div class="command-name">!модер3 @user</div><div class="command-desc">Назначить администратором (ранг 3).</div><div class="command-example">!модер3 @alex</div><div class="rank-tag">🔒 требуется ранг 5</div></div>
             <div class="command-card"><div class="command-name">!модер4 @user</div><div class="command-desc">Назначить старшим администратором (ранг 4).</div><div class="command-example">!модер4 @boss</div><div class="rank-tag">🔒 требуется ранг 5</div></div>
             <div class="command-card"><div class="command-name">!снять @user</div><div class="command-desc">Снять любую модераторскую роль.</div><div class="command-example">!снять @ivan</div><div class="rank-tag">🔒 требуется ранг 5</div></div>
-            <div class="command-card"><div class="command-name">!кто админ</div><div class="command-desc">Список всех модераторов чата с онлайном.</div><div class="command-example">!кто админ</div><div class="rank-tag">👥 для всех</div></div>
-            <div class="command-card"><div class="command-name">!синхронизация</div><div class="command-desc">Синхронизировать Telegram-админов с ботом.</div><div class="command-example">!синхронизация</div><div class="rank-tag">🔒 ранг 5</div></div>
+            <div class="command-card"><div class="command-name">!ктоадмин</div><div class="command-desc">Список всех модераторов чата (без онлайна).</div><div class="command-example">!ктоадмин</div><div class="rank-tag">👥 для всех</div></div>
         </div>
     </div>
 
@@ -503,8 +498,9 @@
             <div class="command-card"><div class="command-name">!удалитьник</div><div class="command-desc">Удалить ник.</div><div class="command-example">!удалитьник</div><div class="rank-tag">👥 для всех</div></div>
             <div class="command-card"><div class="command-name">!звание [текст]</div><div class="command-desc">Установить звание (отображается в профиле).</div><div class="command-example">!звание Хранитель</div><div class="rank-tag">👥 для всех</div></div>
             <div class="command-card"><div class="command-name">!о себе [текст]</div><div class="command-desc">Рассказать о себе (до 3800 символов).</div><div class="command-example">!о себе Люблю Python и чат-ботов</div><div class="rank-tag">👥 для всех</div></div>
-            <div class="command-card"><div class="command-name">!профиль [@user]</div><div class="command-desc">Показать анкету (ник, звание, ранг, Вертексы).</div><div class="command-example">!профиль @friend</div><div class="rank-tag">👥 для всех</div></div>
+            <div class="command-card"><div class="command-name">!профиль [@user]</div><div class="command-desc">Показать анкету (ник, звание, ранг, Вертексы, подарки).</div><div class="command-example">!профиль @friend</div><div class="rank-tag">👥 для всех</div></div>
             <div class="command-card"><div class="command-name">!моястата</div><div class="command-desc">Ваша активность за последние 30 дней.</div><div class="command-example">!моястата</div><div class="rank-tag">👥 для всех</div></div>
+            <div class="command-card"><div class="command-name">!чатинфо</div><div class="command-desc">Статистика чата: название, количество участников, модераторов.</div><div class="command-example">!чатинфо</div><div class="rank-tag">👥 для всех</div></div>
         </div>
     </div>
 
@@ -513,20 +509,63 @@
         <h2 class="section-title">⚡ Экономика — Вертексы (VTS)</h2>
         <div class="commands-grid">
             <div class="command-card"><div class="command-name">!вертексы</div><div class="command-desc">Текущий баланс Вертексов.</div><div class="command-example">!вертексы</div><div class="rank-tag">👥 для всех</div></div>
-            <div class="command-card"><div class="command-name">!передатьвертексы [сумма] @user</div><div class="command-desc">Передать Вертексы другому участнику.</div><div class="command-example">!передатьвертексы 50 @friend</div><div class="rank-tag">👥 для всех</div></div>
+            <div class="command-card"><div class="command-name">!передатьвертексы [сумма] @user</div><div class="command-desc">Передать Вертексы другому участнику (мин. 10).</div><div class="command-example">!передатьвертексы 50 @friend</div><div class="rank-tag">👥 для всех</div></div>
             <div class="command-card"><div class="command-name">!ферма</div><div class="command-desc">Собрать урожай (5-25 VTS + бонус за активность). Раз в 4 часа.</div><div class="command-example">!ферма</div><div class="rank-tag">👥 для всех</div></div>
-            <div class="command-card"><div class="command-name">!подарок @user [сумма]</div><div class="command-desc">Подарить Вертексы другу (от 50 VTS).</div><div class="command-example">!подарок @friend 100</div><div class="rank-tag">👥 для всех</div></div>
+            <div class="command-card"><div class="command-name">!топвертексы</div><div class="command-desc">Топ 10 богатейших пользователей.</div><div class="command-example">!топвертексы</div><div class="rank-tag">👥 для всех</div></div>
         </div>
     </div>
 
-    <!-- Траты Вертексов -->
-    <div class="section" id="currency-spend">
-        <h2 class="section-title">🛍 Куда потратить Вертексы</h2>
+    <!-- Подарки -->
+    <div class="section" id="gifts">
+        <h2 class="section-title">🎁 Подарки</h2>
         <div class="commands-grid">
-            <div class="command-card"><div class="command-name">!снятьмут</div><div class="command-desc">Снять мут с самого себя.</div><div class="command-example">!снятьмут</div><div class="rank-tag">💰 200 VTS</div></div>
-            <div class="command-card"><div class="command-name">!статапериод [дни]</div><div class="command-desc">Статистика чата за период (топ 10).</div><div class="command-example">!статапериод 30</div><div class="rank-tag">💰 30 VTS</div></div>
-            <div class="command-card"><div class="command-name">!сменитьназвание [текст]</div><div class="command-desc">Сменить название чата (для создателя бесплатно).</div><div class="command-example">!сменитьназвание Новый чат</div><div class="rank-tag">💰 50 VTS</div></div>
-            <div class="command-card"><div class="command-name">!созватьвсех [текст]</div><div class="command-desc">Массовое уведомление всех участников.</div><div class="command-example">!созватьвсех Внимание!</div><div class="rank-tag">💰 100 VTS</div></div>
+            <div class="command-card"><div class="command-name">!магазин</div><div class="command-desc">Список доступных подарков и их цена.</div><div class="command-example">!магазин</div><div class="rank-tag">👥 для всех</div></div>
+            <div class="command-card"><div class="command-name">!подарить @user [подарок]</div><div class="command-desc">Подарить подарок другу. Доступно: цветы, торт, мишка, кристалл, трофей.</div><div class="command-example">!подарить @friend цветы</div><div class="rank-tag">👥 для всех</div><div class="cost-tag">💰 от 50 VTS</div></div>
+            <div class="command-card"><div class="command-name">!моиподарки [@user]</div><div class="command-desc">Показать все подарки пользователя.</div><div class="command-example">!моиподарки @friend</div><div class="rank-tag">👥 для всех</div></div>
+        </div>
+        <div class="info-block">
+            <h3>🎁 Цены на подарки</h3>
+            <ul>
+                <li><code>🌹 Цветы</code> — 50 VTS</li>
+                <li><code>🍰 Торт</code> — 75 VTS</li>
+                <li><code>🧸 Плюшевый мишка</code> — 100 VTS</li>
+                <li><code>💎 Кристалл</code> — 200 VTS</li>
+                <li><code>🏆 Трофей</code> — 500 VTS</li>
+            </ul>
+            <p style="margin-top: 12px;">Подарки отображаются в профиле командой <code>!профиль</code></p>
+        </div>
+    </div>
+
+    <!-- Казино и азарт -->
+    <div class="section" id="casino">
+        <h2 class="section-title">🎰 Казино и азарт</h2>
+        <div class="commands-grid">
+            <div class="command-card"><div class="command-name">!казино [ставка]</div><div class="command-desc">Сыграть в казино. Шанс выигрыша x1.5, x2, x3 или x5.</div><div class="command-example">!казино 100</div><div class="rank-tag">👥 для всех</div><div class="cost-tag">💰 от 10 до 1000 VTS</div></div>
+            <div class="command-card"><div class="command-name">!казино [мин] [макс]</div><div class="command-desc">Случайная ставка в указанном диапазоне.</div><div class="command-example">!казино 50 200</div><div class="rank-tag">👥 для всех</div></div>
+            <div class="command-card"><div class="command-name">!лутбокс</div><div class="command-desc">Открыть лутбокс. Можно выиграть VTS или подарок!</div><div class="command-example">!лутбокс</div><div class="rank-tag">👥 для всех</div><div class="cost-tag">💰 150 VTS</div></div>
+        </div>
+        <div class="info-block">
+            <h3>🎲 Шансы выигрыша в казино</h3>
+            <ul>
+                <li>45% — проигрыш</li>
+                <li>25% — выигрыш x1.5</li>
+                <li>15% — выигрыш x2</li>
+                <li>10% — выигрыш x3</li>
+                <li>5% — джекпот x5</li>
+            </ul>
+            <h3 style="margin-top: 16px;">🎁 Шансы выпадения в лутбоксе</h3>
+            <ul>
+                <li>30% — ничего</li>
+                <li>20% — 50 VTS</li>
+                <li>15% — 100 VTS</li>
+                <li>10% — 200 VTS</li>
+                <li>7% — 500 VTS</li>
+                <li>5% — подарок «Цветы»</li>
+                <li>5% — подарок «Торт»</li>
+                <li>4% — подарок «Мишка»</li>
+                <li>3% — подарок «Кристалл»</li>
+                <li>1% — подарок «Трофей»</li>
+            </ul>
         </div>
     </div>
 
@@ -535,7 +574,6 @@
         <h2 class="section-title">🔐 Управление доступом команд (ДК)</h2>
         <div class="commands-grid">
             <div class="command-card"><div class="command-name">!дк [команда] [ранг]</div><div class="command-desc">Установить минимальный ранг для команды (0-5, 6 = отключить).</div><div class="command-example">!дк бан 2</div><div class="rank-tag">🔒 только ранг 5</div></div>
-            <div class="command-card"><div class="command-name">!дк [команда]</div><div class="command-desc">Показать текущий доступ команды.</div><div class="command-example">!дк бан</div><div class="rank-tag">🔒 только ранг 5</div></div>
             <div class="command-card"><div class="command-name">!дк</div><div class="command-desc">Показать все настройки доступа в чате.</div><div class="command-example">!дк</div><div class="rank-tag">🔒 только ранг 5</div></div>
             <div class="command-card"><div class="command-name">!мойдк</div><div class="command-desc">Показать ваш личный доступ к командам.</div><div class="command-example">!мойдк</div><div class="rank-tag">👥 для всех</div></div>
         </div>
@@ -587,15 +625,6 @@
         </div>
     </div>
 
-    <!-- Инфо -->
-    <div class="section" id="info">
-        <h2 class="section-title">ℹ️ Общая информация</h2>
-        <div class="commands-grid">
-            <div class="command-card"><div class="command-name">!чатинфо</div><div class="command-desc">Статистика чата: название, количество участников, модераторов.</div><div class="command-example">!чатинфо</div><div class="rank-tag">👥 для всех</div></div>
-            <div class="command-card"><div class="command-name">/start</div><div class="command-desc">Приветственное сообщение со ссылкой на документацию.</div><div class="command-example">/start</div><div class="rank-tag">👥 для всех</div></div>
-        </div>
-    </div>
-
     <!-- Блок с указанием пользователя -->
     <div class="info-block">
         <h3>🎯 Как указать пользователя в командах наказания</h3>
@@ -606,7 +635,7 @@
         </ul>
     </div>
 
-    <!-- Блок с префиксами команд (внизу страницы) -->
+    <!-- Блок с префиксами команд -->
     <div class="prefixes-info">
         <p>
             ⚡ <strong>Префиксы команд:</strong> 
@@ -628,7 +657,7 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <div class="logo-small">Vertex</div>
-                <p>Современный чат-менеджер для Telegram-сообществ. Модерация, экономика, аналитика — всё в одном боте.</p>
+                <p>Современный чат-менеджер для Telegram-сообществ. Модерация, экономика, подарки, казино — всё в одном боте.</p>
             </div>
             <div class="footer-links">
                 <div class="footer-links-column">
@@ -637,7 +666,8 @@
                     <a href="#punishments">Наказания</a>
                     <a href="#profile">Профиль</a>
                     <a href="#economy">Экономика</a>
-                    <a href="#currency-spend">Траты</a>
+                    <a href="#gifts">Подарки</a>
+                    <a href="#casino">Казино</a>
                     <a href="#access">Доступ</a>
                     <a href="#clean">Чистка</a>
                     <a href="#fun">Развлечения</a>
