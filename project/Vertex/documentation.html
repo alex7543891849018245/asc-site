@@ -85,6 +85,64 @@
             color: #c084fc;
         }
 
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-btn {
+            color: #a1a1aa;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+            padding: 0;
+        }
+        
+        .dropdown-btn:hover {
+            color: #a855f7;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #1a1a2a;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            min-width: 180px;
+            z-index: 1000;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        
+        .dropdown-content a {
+            display: block;
+            padding: 10px 20px;
+            font-size: 14px;
+            white-space: nowrap;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-content a:hover {
+            background: rgba(168, 85, 247, 0.15);
+            color: #c084fc;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
         .nav-links {
             display: flex;
             gap: 32px;
@@ -430,16 +488,34 @@
         </div>
         <div class="nav-links">
             <a href="#moderation">Модерация</a>
-            <a href="#punishments">Наказания</a>
+            
+            <div class="dropdown">
+                <button class="dropdown-btn">💰 Экономика ▼</button>
+                <div class="dropdown-content">
+                    <a href="#economy">Вертексы</a>
+                    <a href="#recharge">Пополнение</a>
+                    <a href="#gifts">Подарки</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <button class="dropdown-btn">🎮 Игры ▼</button>
+                <div class="dropdown-content">
+                    <a href="#casino">Казино</a>
+                    <a href="#fun">Развлечения</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <button class="dropdown-btn">⚙️ Настройки ▼</button>
+                <div class="dropdown-content">
+                    <a href="#access">Доступ команд</a>
+                    <a href="#clean">Чистка чата</a>
+                    <a href="#settings">Настройки</a>
+                </div>
+            </div>
+            
             <a href="#profile">Профиль</a>
-            <a href="#economy">Экономика</a>
-            <a href="#gifts">Подарки</a>
-            <a href="#casino">Казино</a>
-            <a href="#access">Доступ</a>
-            <a href="#clean">Чистка</a>
-            <a href="#fun">Развлечения</a>
-            <a href="#settings">Настройки</a>
-            <a href="/project/Vertex/">Главная</a>
             <a href="https://github.com/AlexGame2012/Vertex-Manager-Bot" target="_blank">GitHub</a>
         </div>
         <button class="burger" id="burgerBtn">
@@ -512,6 +588,7 @@
             <div class="command-card"><div class="command-name">!передатьвертексы [сумма] @user</div><div class="command-desc">Передать Вертексы другому участнику (мин. 10).</div><div class="command-example">!передатьвертексы 50 @friend</div><div class="rank-tag">👥 для всех</div></div>
             <div class="command-card"><div class="command-name">!ферма</div><div class="command-desc">Собрать урожай (5-25 VTS + бонус за активность). Раз в 4 часа.</div><div class="command-example">!ферма</div><div class="rank-tag">👥 для всех</div></div>
             <div class="command-card"><div class="command-name">!топвертексы</div><div class="command-desc">Топ 10 богатейших пользователей.</div><div class="command-example">!топвертексы</div><div class="rank-tag">👥 для всех</div></div>
+            <div class="command-card"><div class="command-name">!купить 100</div><div class="command-desc">Пополнить баланс за Telegram Stars (только в ЛС бота).</div><div class="command-example">!купить 100</div><div class="rank-tag">👥 для всех</div><div class="cost-tag">⭐ 1 Star = 5 VTS</div></div>
         </div>
     </div>
 
@@ -533,6 +610,25 @@
                 <li><code>🏆 Трофей</code> — 500 VTS</li>
             </ul>
             <p style="margin-top: 12px;">Подарки отображаются в профиле командой <code>!профиль</code></p>
+        </div>
+    </div>
+
+    <!-- Пополнение баланса -->
+    <div class="section" id="recharge">
+        <h2 class="section-title">⭐ Пополнение баланса</h2>
+        <div class="commands-grid">
+            <div class="command-card"><div class="command-name">!купить [количество]</div><div class="command-desc">Пополнить баланс Вертексов за Telegram Stars. Работает только в личных сообщениях с ботом.</div><div class="command-example">!купить 100</div><div class="rank-tag">👥 для всех</div><div class="cost-tag">⭐ 1 Star = 5 VTS</div></div>
+        </div>
+        <div class="info-block">
+            <h3>⭐ Информация о пополнении</h3>
+            <ul>
+                <li><strong>Курс:</strong> 1 Telegram Star = 5 Вертексов</li>
+                <li><strong>Минимальная покупка:</strong> 10 Stars (50 Вертексов)</li>
+                <li><strong>Максимальная покупка:</strong> 10000 Stars (50000 Вертексов)</li>
+                <li><strong>Где работает:</strong> только в личных сообщениях с ботом</li>
+                <li><strong>Способ оплаты:</strong> Telegram Stars (встроенная валюта Telegram)</li>
+            </ul>
+            <p style="margin-top: 12px;">💡 После оплаты Вертексы зачисляются автоматически!</p>
         </div>
     </div>
 
