@@ -393,7 +393,7 @@ body {
   margin: 0 auto;
 }
 
-/* Карточки проектов - ИСПРАВЛЕНО */
+/* Карточки проектов */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -535,16 +535,10 @@ body {
   font-size: 0.9rem;
 }
 
-/* Адаптивность для мобильных */
+/* Адаптивность */
 @media (max-width: 768px) {
-  .navbar {
-    padding: 1rem;
-  }
-  
-  .menu-toggle {
-    display: flex;
-  }
-  
+  .navbar { padding: 1rem; }
+  .menu-toggle { display: flex; }
   .nav-menu {
     position: fixed;
     top: 0;
@@ -561,140 +555,39 @@ body {
     z-index: 1000;
     gap: 2rem;
   }
-  
-  .nav-menu.active {
-    right: 0;
-    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
-  }
-  
-  .nav-links {
-    flex-direction: column;
-    width: 100%;
-    gap: 1rem;
-  }
-  
-  .nav-links li {
-    width: 100%;
-  }
-  
-  .nav-links a {
-    display: block;
-    padding: 0.8rem 1rem;
-    width: 100%;
-    text-align: left;
-  }
-  
-  .language-selector {
-    width: 100%;
-  }
-  
-  .language-toggle {
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .language-dropdown {
-    right: auto;
-    left: 0;
-    width: 100%;
-  }
-  
-  .hero {
-    margin-top: 80px;
-    padding: 0 1rem;
-  }
-  
-  .hero h1 {
-    font-size: 2rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 1rem;
-  }
-  
-  .section {
-    padding: 3rem 1rem;
-  }
-  
-  .section-title {
-    font-size: 1.8rem;
-  }
-  
-  .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  
-  .btn {
-    padding: 0.8rem 1.5rem;
-    font-size: 0.95rem;
-  }
-  
-  .footer-content {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  
-  .footer-section {
-    text-align: center;
-  }
-  
-  .social-links {
-    justify-content: center;
-  }
+  .nav-menu.active { right: 0; box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5); }
+  .nav-links { flex-direction: column; width: 100%; gap: 1rem; }
+  .nav-links li { width: 100%; }
+  .nav-links a { display: block; padding: 0.8rem 1rem; width: 100%; text-align: left; }
+  .language-selector { width: 100%; }
+  .language-toggle { width: 100%; justify-content: center; }
+  .language-dropdown { right: auto; left: 0; width: 100%; }
+  .hero { margin-top: 80px; padding: 0 1rem; }
+  .hero h1 { font-size: 2rem; }
+  .hero-subtitle { font-size: 1rem; }
+  .section { padding: 3rem 1rem; }
+  .section-title { font-size: 1.8rem; }
+  .projects-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .btn { padding: 0.8rem 1.5rem; font-size: 0.95rem; }
+  .footer-content { grid-template-columns: 1fr; gap: 1.5rem; }
+  .footer-section { text-align: center; }
+  .social-links { justify-content: center; }
 }
 
 @media (max-width: 480px) {
-  .hero h1 {
-    font-size: 1.6rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 0.95rem;
-  }
-  
-  .project-card {
-    padding: 1.5rem;
-    min-height: 340px;
-  }
-  
-  .footer {
-    padding: 2rem 1rem 1rem;
-  }
-  
-  .nav-menu {
-    width: 100%;
-  }
+  .hero h1 { font-size: 1.6rem; }
+  .hero-subtitle { font-size: 0.95rem; }
+  .project-card { padding: 1.5rem; min-height: 340px; }
+  .footer { padding: 2rem 1rem 1rem; }
+  .nav-menu { width: 100%; }
 }
 
-/* Микровзаимодействия */
-.hover-lift {
-  transition: transform 0.3s ease;
-}
+.hover-lift { transition: transform 0.3s ease; }
+.hover-lift:hover { transform: translateY(-2px); }
+.glass-effect { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); }
+.fade-in { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
 
-.hover-lift:hover {
-  transform: translateY(-2px);
-}
-
-.glass-effect {
-  background: var(--glass);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-}
-
-/* Анимация появления при скролле */
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Cookie Consent стили */
 .cookie-consent {
   position: fixed;
   bottom: 0;
@@ -721,39 +614,14 @@ body {
   gap: 15px;
 }
 
-.cookie-content p {
-  margin: 0;
-  flex: 1;
-  min-width: 300px;
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.cookie-content a {
-  color: #4dabf7;
-  text-decoration: underline;
-}
-
-.cookie-buttons {
-  display: flex;
-  gap: 10px;
-  flex-shrink: 0;
-}
-
-.btn-sm {
-  padding: 0.5rem 1rem !important;
-  font-size: 0.875rem !important;
-}
+.cookie-content p { margin: 0; flex: 1; min-width: 300px; font-size: 0.9rem; line-height: 1.5; }
+.cookie-content a { color: #4dabf7; text-decoration: underline; }
+.cookie-buttons { display: flex; gap: 10px; flex-shrink: 0; }
+.btn-sm { padding: 0.5rem 1rem !important; font-size: 0.875rem !important; }
 
 @media (max-width: 768px) {
-  .cookie-content {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .cookie-content p {
-    min-width: auto;
-  }
+  .cookie-content { flex-direction: column; text-align: center; }
+  .cookie-content p { min-width: auto; }
 }
 </style>
 </head>
@@ -763,15 +631,11 @@ body {
 <nav class="navbar">
   <div class="nav-content">
     <div class="logo">AlexStudio Code</div>
-    
-    <!-- Гамбургер-меню (три полоски) -->
     <div class="menu-toggle" id="menuToggle">
       <span></span>
       <span></span>
       <span></span>
     </div>
-    
-    <!-- Навигация и язык вместе -->
     <div class="nav-menu" id="navMenu">
       <ul class="nav-links">
         <li><a href="#home" data-i18n="nav.home">Главная</a></li>
@@ -779,8 +643,6 @@ body {
         <li><a href="#projects" data-i18n="nav.projects">Проекты</a></li>
         <li><a href="#contact" data-i18n="nav.contact">Контакты</a></li>
       </ul>
-      
-      <!-- Выбор языка -->
       <div class="language-selector">
         <button class="language-toggle" id="languageToggle">
           <i class="fas fa-globe"></i>
@@ -826,34 +688,19 @@ body {
   </div>
   <div class="projects-grid">
     <div class="project-card fade-in">
-      <div class="project-icon">
-        <i class="fas fa-code"></i>
-      </div>
+      <div class="project-icon"><i class="fas fa-code"></i></div>
       <h3 class="project-title" data-i18n="about.web_dev">Веб-разработка</h3>
-      <p class="project-description" data-i18n="about.web_desc">
-        Создаём современные веб-приложения и сайты с использованием 
-        передовых технологий и лучших практик разработки.
-      </p>
+      <p class="project-description" data-i18n="about.web_desc">Создаём современные веб-приложения и сайты с использованием передовых технологий и лучших практик разработки.</p>
     </div>
     <div class="project-card fade-in">
-      <div class="project-icon">
-        <i class="fas fa-robot"></i>
-      </div>
+      <div class="project-icon"><i class="fas fa-robot"></i></div>
       <h3 class="project-title" data-i18n="about.bots">Telegram боты</h3>
-      <p class="project-description" data-i18n="about.bots_desc">
-        Разработка интеллектуальных ботов для автоматизации 
-        бизнес-процессов и улучшения взаимодействия с клиентами.
-      </p>
+      <p class="project-description" data-i18n="about.bots_desc">Разработка интеллектуальных ботов для автоматизации бизнес-процессов и улучшения взаимодействия с клиентами.</p>
     </div>
     <div class="project-card fade-in">
-      <div class="project-icon">
-        <i class="fas fa-mobile-alt"></i>
-      </div>
+      <div class="project-icon"><i class="fas fa-mobile-alt"></i></div>
       <h3 class="project-title" data-i18n="about.mobile">Мобильные приложения</h3>
-      <p class="project-description" data-i18n="about.mobile_desc">
-        Кроссплатформенная разработка мобильных приложений 
-        для iOS и Android с нативным пользовательским опытом.
-      </p>
+      <p class="project-description" data-i18n="about.mobile_desc">Кроссплатформенная разработка мобильных приложений для iOS и Android с нативным пользовательским опытом.</p>
     </div>
   </div>
 </section>
@@ -862,77 +709,41 @@ body {
 <section id="projects" class="section" style="background: var(--darker);">
   <div class="section-header">
     <h2 class="section-title" data-i18n="projects.title">Наши проекты</h2>
-    <p class="section-subtitle" data-i18n="projects.subtitle">
-      Реализованные решения, которые демонстрируют наш подход к разработке
-    </p>
+    <p class="section-subtitle" data-i18n="projects.subtitle">Реализованные решения, которые демонстрируют наш подход к разработке</p>
   </div>
   
   <div class="projects-grid">
     <!-- Проект 1: Рогалик -->
     <div class="project-card fade-in">
-      <div class="project-icon">
-        <i class="fas fa-dungeon"></i>
-      </div>
+      <div class="project-icon"><i class="fas fa-dungeon"></i></div>
       <h3 class="project-title" data-i18n="projects.roguelike">Игра-Рогалик</h3>
-      <p class="project-description" data-i18n="projects.roguelike_desc">
-        Увлекательная рогалик-игра с процедурной генерацией и постоянным развитием. 
-        Исследуй подземелья, собирай артефакты и прокачивай персонажа.
-      </p>
-      <a href="/roguelike-game-asc" class="btn" style="margin-top: auto;">
-        <i class="fas fa-download"></i>
-        <span data-i18n="projects.download_game">Скачать игру</span>
-      </a>
+      <p class="project-description" data-i18n="projects.roguelike_desc">Увлекательная рогалик-игра с процедурной генерацией и постоянным развитием. Исследуй подземелья, собирай артефакты и прокачивай персонажа.</p>
+      <a href="/roguelike-game-asc" class="btn" style="margin-top: auto;"><i class="fas fa-download"></i><span data-i18n="projects.download_game">Скачать игру</span></a>
     </div>
     
     <!-- Проект 2: Глобальное потепление -->
     <div class="project-card fade-in">
-      <div class="project-icon">
-        <i class="fas fa-globe-americas"></i>
-      </div>
+      <div class="project-icon"><i class="fas fa-globe-americas"></i></div>
       <h3 class="project-title" data-i18n="projects.warming">Глобальное потепление</h3>
-      <p class="project-description" data-i18n="projects.warming_desc">
-        Информационный проект, посвящённый проблемам изменения климата 
-        и способам борьбы с глобальным потеплением.
-      </p>
-      <a href="https://github.com/AlexGame2012/global-warming.git" target="_blank" class="btn" style="margin-top: auto;">
-        <i class="fab fa-github"></i>
-        <span data-i18n="projects.source_code">Исходный код</span>
-      </a>
+      <p class="project-description" data-i18n="projects.warming_desc">Информационный проект, посвящённый проблемам изменения климата и способам борьбы с глобальным потеплением.</p>
+      <a href="https://github.com/AlexGame2012/global-warming.git" target="_blank" class="btn" style="margin-top: auto;"><i class="fab fa-github"></i><span data-i18n="projects.source_code">Исходный код</span></a>
     </div>
     
     <!-- Проект 3: Portfolio Bot -->
     <div class="project-card fade-in">
-      <div class="project-icon">
-        <i class="fas fa-robot"></i>
-      </div>
+      <div class="project-icon"><i class="fas fa-robot"></i></div>
       <h3 class="project-title" data-i18n="projects.portfolio_bot">Portfolio Bot</h3>
-      <p class="project-description" data-i18n="projects.portfolio_bot_desc">
-        Умный Telegram бот для презентации портфолио разработчика. 
-        Показывает проекты, навыки и контакты в удобном интерактивном формате.
-      </p>
-      <div style="display: flex; gap: 0.5rem; margin-top: auto;">
-        <a href="https://github.com/AlexGame2012/bot_portfolio.git" target="_blank" class="btn" style="flex: 1;">
-          <i class="fab fa-github"></i>
-          <span data-i18n="projects.source_code">Исходный код</span>
-        </a>
-      </div>
+      <p class="project-description" data-i18n="projects.portfolio_bot_desc">Умный Telegram бот для презентации портфолио разработчика. Показывает проекты, навыки и контакты в удобном интерактивном формате.</p>
+      <a href="https://github.com/AlexGame2012/bot_portfolio.git" target="_blank" class="btn" style="margin-top: auto;"><i class="fab fa-github"></i><span data-i18n="projects.source_code">Исходный код</span></a>
     </div>
 
     <!-- Проект 4: Vertex (Telegram бот) -->
-   <div class="project-card fade-in">
-     <div class="project-icon">
-       <i class="fab fa-telegram"></i>
-     </div>
-     <h3 class="project-title" data-i18n="projects.vertex">Vertex Manager Bot</h3>
-     <p class="project-description" data-i18n="projects.vertex_desc">
-       Мощный чат-менеджер для Telegram с продвинутой модерацией, экономикой, подарками и азартными играми. 
-       5 уровней модераторов, внутренняя валюта, казино, лутбоксы и пополнение через Telegram Stars.
-     </p>
-     <a href="https://alexstudiocode.ru/project/Vertex" target="_blank" class="btn" style="margin-top: auto;">
-       <i class="fas fa-external-link-alt"></i>
-       <span data-i18n="projects.vertex_details">Подробнее</span>
-     </a>
-   </div>
+    <div class="project-card fade-in">
+      <div class="project-icon"><i class="fab fa-telegram"></i></div>
+      <h3 class="project-title" data-i18n="projects.vertex">Vertex Manager Bot</h3>
+      <p class="project-description" data-i18n="projects.vertex_desc">Мощный чат-менеджер для Telegram с продвинутой модерацией, экономикой, подарками и азартными играми. 5 уровней модераторов, внутренняя валюта, казино, лутбоксы и пополнение через Telegram Stars.</p>
+      <a href="https://alexstudiocode.ru/project/Vertex" target="_blank" class="btn" style="margin-top: auto;"><i class="fas fa-external-link-alt"></i><span data-i18n="projects.vertex_details">Подробнее</span></a>
+    </div>
   </div>
 </section>
 
@@ -943,15 +754,9 @@ body {
       <h3>AlexStudio Code</h3>
       <p data-i18n="footer.tagline">Создаём цифровые решения, которые работают на результат.</p>
       <div class="social-links">
-        <a href="https://t.me/AlexStudioCode" class="social-link" target="_blank">
-          <i class="fab fa-telegram-plane"></i>
-        </a>
-        <a href="https://github.com/AlexGame2012" class="social-link" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="mailto:info@alexstudiocode.ru" class="social-link">
-          <i class="fas fa-envelope"></i>
-        </a>
+        <a href="https://t.me/AlexStudioCode" class="social-link" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+        <a href="https://github.com/AlexGame2012" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:info@alexstudiocode.ru" class="social-link"><i class="fas fa-envelope"></i></a>
       </div>
     </div>
     
@@ -1033,8 +838,8 @@ const translations = {
     "projects.portfolio_bot_desc": "Умный Telegram бот для презентации портфолио разработчика. Показывает проекты, навыки и контакты в удобном интерактивном формате.",
     "projects.source_code": "Исходный код",
     "projects.vertex": "Vertex Manager Bot",
-    "projects.vertex_desc": "Powerful Telegram chat manager with advanced moderation, economy, gifts and gambling games. 5 moderator levels, internal currency, casino, loot boxes and top-up via Telegram Stars.",
-    "projects.vertex_details": "Details"
+    "projects.vertex_desc": "Мощный чат-менеджер для Telegram с продвинутой модерацией, экономикой, подарками и азартными играми. 5 уровней модераторов, внутренняя валюта, казино, лутбоксы и пополнение через Telegram Stars.",
+    "projects.vertex_details": "Подробнее",
     "footer.tagline": "Создаём цифровые решения, которые работают на результат.",
     "footer.contacts": "Контакты",
     "footer.navigation": "Навигация",
@@ -1074,8 +879,8 @@ const translations = {
     "projects.portfolio_bot_desc": "Smart Telegram bot for developer portfolio presentation. Shows projects, skills and contacts in convenient interactive format.",
     "projects.source_code": "Source Code",
     "projects.vertex": "Vertex Manager Bot",
-    "projects.vertex_desc": "Мощный чат-менеджер для Telegram с продвинутой модерацией, экономикой, подарками и азартными играми. 5 уровней модераторов, внутренняя валюта, казино, лутбоксы и пополнение через Telegram Stars.",
-    "projects.vertex_details": "Подробнее"
+    "projects.vertex_desc": "Powerful Telegram chat manager with advanced moderation, economy, gifts and gambling games. 5 moderator levels, internal currency, casino, loot boxes and top-up via Telegram Stars.",
+    "projects.vertex_details": "Details",
     "footer.tagline": "We create digital solutions that deliver results.",
     "footer.contacts": "Contacts",
     "footer.navigation": "Navigation",
@@ -1126,44 +931,24 @@ const savedLanguage = localStorage.getItem('language') || 'ru';
 setLanguage(savedLanguage);
 
 // Анимация появления элементов при скролле
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
-};
-
+const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
 }, observerOptions);
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-document.querySelectorAll('.fade-in').forEach(el => {
-  observer.observe(el);
-});
-
-// Плавная прокрутка для якорных ссылок
+// Плавная прокрутка
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
     const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
 
 window.addEventListener('scroll', () => {
   const navbar = document.querySelector('.navbar');
-  if (window.scrollY > 100) {
-    navbar.style.background = 'rgba(15, 15, 35, 0.95)';
-  } else {
-    navbar.style.background = 'var(--glass)';
-  }
+  navbar.style.background = window.scrollY > 100 ? 'rgba(15, 15, 35, 0.95)' : 'var(--glass)';
 });
 
 // Гамбургер-меню
@@ -1176,7 +961,6 @@ menuToggle.addEventListener('click', () => {
   document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
 });
 
-// Закрыть меню при клике на ссылку
 document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', () => {
     menuToggle.classList.remove('active');
@@ -1185,7 +969,6 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   });
 });
 
-// Закрыть меню при клике вне его
 document.addEventListener('click', (e) => {
   if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
     menuToggle.classList.remove('active');
@@ -1201,17 +984,15 @@ document.addEventListener('DOMContentLoaded', function() {
   const rejectBtn = document.getElementById('rejectCookies');
   
   if (!localStorage.getItem('cookieConsent')) {
-      setTimeout(() => {
-          cookieConsent.style.display = 'flex';
-      }, 1000);
+      setTimeout(() => { cookieConsent.style.display = 'flex'; }, 1000);
   }
   
-  acceptBtn.addEventListener('click', function() {
+  acceptBtn.addEventListener('click', () => {
       localStorage.setItem('cookieConsent', 'accepted');
       cookieConsent.style.display = 'none';
   });
   
-  rejectBtn.addEventListener('click', function() {
+  rejectBtn.addEventListener('click', () => {
       localStorage.setItem('cookieConsent', 'rejected');
       cookieConsent.style.display = 'none';
   });
