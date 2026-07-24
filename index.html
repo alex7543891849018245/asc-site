@@ -58,6 +58,7 @@
   --glass: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.1);
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  --gitverse: #1a73e8;
 }
 
 * {
@@ -364,6 +365,15 @@ body {
   border-color: var(--primary);
 }
 
+.btn-gitverse {
+  background: linear-gradient(45deg, var(--gitverse), #1557b0);
+  box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
+}
+
+.btn-gitverse:hover {
+  box-shadow: 0 8px 25px rgba(26, 115, 232, 0.5);
+}
+
 /* Секции */
 .section {
   padding: 5rem 2rem;
@@ -414,7 +424,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
-  min-height: 380px;
+  min-height: 420px;
 }
 
 .project-card::before {
@@ -459,6 +469,21 @@ body {
   color: var(--gray);
   margin-bottom: 1.5rem;
   flex: 1;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.project-links .btn {
+  flex: 1;
+  min-width: 120px;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
 }
 
 /* Футер */
@@ -527,6 +552,10 @@ body {
   transform: translateY(-2px);
 }
 
+.social-link-gitverse:hover {
+  background: var(--gitverse);
+}
+
 .footer-bottom {
   text-align: center;
   padding-top: 2rem;
@@ -572,14 +601,17 @@ body {
   .footer-content { grid-template-columns: 1fr; gap: 1.5rem; }
   .footer-section { text-align: center; }
   .social-links { justify-content: center; }
+  .project-links .btn { min-width: 100px; font-size: 0.8rem; padding: 0.6rem 1rem; }
 }
 
 @media (max-width: 480px) {
   .hero h1 { font-size: 1.6rem; }
   .hero-subtitle { font-size: 0.95rem; }
-  .project-card { padding: 1.5rem; min-height: 340px; }
+  .project-card { padding: 1.5rem; min-height: 380px; }
   .footer { padding: 2rem 1rem 1rem; }
   .nav-menu { width: 100%; }
+  .project-links { flex-direction: column; }
+  .project-links .btn { min-width: auto; }
 }
 
 .hover-lift { transition: transform 0.3s ease; }
@@ -718,7 +750,9 @@ body {
       <div class="project-icon"><i class="fas fa-dungeon"></i></div>
       <h3 class="project-title" data-i18n="projects.roguelike">Игра-Рогалик</h3>
       <p class="project-description" data-i18n="projects.roguelike_desc">Увлекательная рогалик-игра с процедурной генерацией и постоянным развитием. Исследуй подземелья, собирай артефакты и прокачивай персонажа.</p>
-      <a href="/project/roguelike-game-asc" class="btn" style="margin-top: auto;"><i class="fas fa-download"></i><span data-i18n="projects.download_game">Скачать игру</span></a>
+      <div class="project-links">
+        <a href="/project/roguelike-game-asc" class="btn"><i class="fas fa-download"></i> <span data-i18n="projects.download_game">Скачать игру</span></a>
+      </div>
     </div>
     
     <!-- Проект 2: Глобальное потепление -->
@@ -726,7 +760,10 @@ body {
       <div class="project-icon"><i class="fas fa-globe-americas"></i></div>
       <h3 class="project-title" data-i18n="projects.warming">Глобальное потепление</h3>
       <p class="project-description" data-i18n="projects.warming_desc">Информационный проект, посвящённый проблемам изменения климата и способам борьбы с глобальным потеплением.</p>
-      <a href="https://github.com/AlexGame2012/global-warming.git" target="_blank" class="btn" style="margin-top: auto;"><i class="fab fa-github"></i><span data-i18n="projects.source_code">Исходный код</span></a>
+      <div class="project-links">
+        <a href="https://gitverse.ru/AlexStudio-Code/global-warming" target="_blank" class="btn btn-gitverse"><i class="fas fa-code-branch"></i> <span data-i18n="projects.source_code">Исходный код</span></a>
+        <a href="https://github.com/AlexGame2012/global-warming.git" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
+      </div>
     </div>
     
     <!-- Проект 3: Portfolio Bot -->
@@ -734,15 +771,22 @@ body {
       <div class="project-icon"><i class="fas fa-robot"></i></div>
       <h3 class="project-title" data-i18n="projects.portfolio_bot">Portfolio Bot</h3>
       <p class="project-description" data-i18n="projects.portfolio_bot_desc">Умный Telegram бот для презентации портфолио разработчика. Показывает проекты, навыки и контакты в удобном интерактивном формате.</p>
-      <a href="https://github.com/AlexGame2012/bot_portfolio.git" target="_blank" class="btn" style="margin-top: auto;"><i class="fab fa-github"></i><span data-i18n="projects.source_code">Исходный код</span></a>
+      <div class="project-links">
+        <a href="https://gitverse.ru/AlexStudio-Code/bot_portfolio" target="_blank" class="btn btn-gitverse"><i class="fas fa-code-branch"></i> <span data-i18n="projects.source_code">Исходный код</span></a>
+        <a href="https://github.com/AlexGame2012/bot_portfolio.git" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
+      </div>
     </div>
 
-    <!-- Проект 4: Vertex (Telegram бот) -->
+    <!-- Проект 4: Vertex Manager Bot -->
     <div class="project-card fade-in">
       <div class="project-icon"><i class="fab fa-telegram"></i></div>
       <h3 class="project-title" data-i18n="projects.vertex">Vertex Manager Bot</h3>
       <p class="project-description" data-i18n="projects.vertex_desc">Мощный чат-менеджер для Telegram с продвинутой модерацией, экономикой, подарками и азартными играми. 5 уровней модераторов, внутренняя валюта, казино, лутбоксы и пополнение через Telegram Stars.</p>
-      <a href="https://alexstudiocode.ru/project/Vertex" target="_blank" class="btn" style="margin-top: auto;"><i class="fas fa-external-link-alt"></i><span data-i18n="projects.vertex_details">Подробнее</span></a>
+      <div class="project-links">
+        <a href="https://gitverse.ru/AlexStudio-Code/vertex-manager-bot" target="_blank" class="btn btn-gitverse"><i class="fas fa-code-branch"></i> <span data-i18n="projects.source_code">Исходный код</span></a>
+        <a href="https://github.com/AlexGame2012/vertex-manager-bot" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
+        <a href="https://alexstudiocode.ru/project/Vertex" target="_blank" class="btn"><i class="fas fa-external-link-alt"></i> <span data-i18n="projects.vertex_details">Подробнее</span></a>
+      </div>
     </div>
   </div>
 </section>
@@ -756,6 +800,7 @@ body {
       <div class="social-links">
         <a href="https://t.me/AlexStudioCode" class="social-link" target="_blank"><i class="fab fa-telegram-plane"></i></a>
         <a href="https://github.com/AlexGame2012" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://gitverse.ru/AlexStudio-Code" class="social-link social-link-gitverse" target="_blank"><i class="fas fa-code-branch"></i></a>
         <a href="mailto:info@alexstudiocode.ru" class="social-link"><i class="fas fa-envelope"></i></a>
       </div>
     </div>
