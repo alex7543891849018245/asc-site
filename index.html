@@ -319,12 +319,13 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 1rem 2rem;
+  padding: 0.75rem 1.5rem;
   background: linear-gradient(45deg, var(--primary), var(--primary-dark));
   color: white;
   text-decoration: none;
-  border-radius: 12px;
+  border-radius: 10px;
   font-weight: 600;
+  font-size: 0.9rem;
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
@@ -374,6 +375,20 @@ body {
   box-shadow: 0 8px 25px rgba(26, 115, 232, 0.5);
 }
 
+.btn-github {
+  background: linear-gradient(45deg, #24292e, #181717);
+  box-shadow: 0 4px 15px rgba(36, 41, 46, 0.3);
+}
+
+.btn-github:hover {
+  box-shadow: 0 8px 25px rgba(36, 41, 46, 0.5);
+}
+
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+}
+
 /* Секции */
 .section {
   padding: 5rem 2rem;
@@ -406,7 +421,7 @@ body {
 /* Карточки проектов */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   margin-top: 3rem;
   align-items: stretch;
@@ -471,19 +486,52 @@ body {
   flex: 1;
 }
 
-.project-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+/* Блок исходного кода */
+.source-code-block {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 1rem;
   margin-top: auto;
+  border: 1px solid var(--glass-border);
 }
 
-.project-links .btn {
-  flex: 1;
-  min-width: 120px;
-  justify-content: center;
-  padding: 0.75rem 1.25rem;
+.source-code-block .label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--gray);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.source-code-block .label i {
   font-size: 0.9rem;
+}
+
+.source-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.source-buttons .btn {
+  flex: 1;
+  min-width: 100px;
+  justify-content: center;
+}
+
+/* Кнопка "Подробнее" отдельно */
+.project-actions {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.project-actions .btn {
+  flex: 1;
+  justify-content: center;
 }
 
 /* Футер */
@@ -597,11 +645,11 @@ body {
   .section { padding: 3rem 1rem; }
   .section-title { font-size: 1.8rem; }
   .projects-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-  .btn { padding: 0.8rem 1.5rem; font-size: 0.95rem; }
   .footer-content { grid-template-columns: 1fr; gap: 1.5rem; }
   .footer-section { text-align: center; }
   .social-links { justify-content: center; }
-  .project-links .btn { min-width: 100px; font-size: 0.8rem; padding: 0.6rem 1rem; }
+  .source-buttons .btn { min-width: 80px; font-size: 0.75rem; padding: 0.4rem 0.8rem; }
+  .project-actions .btn { font-size: 0.85rem; padding: 0.6rem 1rem; }
 }
 
 @media (max-width: 480px) {
@@ -610,8 +658,8 @@ body {
   .project-card { padding: 1.5rem; min-height: 380px; }
   .footer { padding: 2rem 1rem 1rem; }
   .nav-menu { width: 100%; }
-  .project-links { flex-direction: column; }
-  .project-links .btn { min-width: auto; }
+  .source-buttons { flex-direction: column; }
+  .source-buttons .btn { min-width: auto; }
 }
 
 .hover-lift { transition: transform 0.3s ease; }
@@ -649,7 +697,6 @@ body {
 .cookie-content p { margin: 0; flex: 1; min-width: 300px; font-size: 0.9rem; line-height: 1.5; }
 .cookie-content a { color: #4dabf7; text-decoration: underline; }
 .cookie-buttons { display: flex; gap: 10px; flex-shrink: 0; }
-.btn-sm { padding: 0.5rem 1rem !important; font-size: 0.875rem !important; }
 
 @media (max-width: 768px) {
   .cookie-content { flex-direction: column; text-align: center; }
@@ -750,7 +797,7 @@ body {
       <div class="project-icon"><i class="fas fa-dungeon"></i></div>
       <h3 class="project-title" data-i18n="projects.roguelike">Игра-Рогалик</h3>
       <p class="project-description" data-i18n="projects.roguelike_desc">Увлекательная рогалик-игра с процедурной генерацией и постоянным развитием. Исследуй подземелья, собирай артефакты и прокачивай персонажа.</p>
-      <div class="project-links">
+      <div class="project-actions">
         <a href="/project/roguelike-game-asc" class="btn"><i class="fas fa-download"></i> <span data-i18n="projects.download_game">Скачать игру</span></a>
       </div>
     </div>
@@ -760,9 +807,12 @@ body {
       <div class="project-icon"><i class="fas fa-globe-americas"></i></div>
       <h3 class="project-title" data-i18n="projects.warming">Глобальное потепление</h3>
       <p class="project-description" data-i18n="projects.warming_desc">Информационный проект, посвящённый проблемам изменения климата и способам борьбы с глобальным потеплением.</p>
-      <div class="project-links">
-        <a href="https://gitverse.ru/AlexStudio-Code/global-warming" target="_blank" class="btn btn-gitverse"><i class="fas fa-code-branch"></i> <span data-i18n="projects.source_code">Исходный код</span></a>
-        <a href="https://github.com/AlexGame2012/global-warming.git" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
+      <div class="source-code-block">
+        <div class="label"><i class="fas fa-code"></i> <span data-i18n="projects.source_code">Исходный код</span></div>
+        <div class="source-buttons">
+          <a href="https://gitverse.ru/AlexStudio-Code/global-warming" target="_blank" class="btn btn-gitverse btn-sm"><i class="fas fa-code-branch"></i> GitVerse</a>
+          <a href="https://github.com/AlexGame2012/global-warming.git" target="_blank" class="btn btn-github btn-sm"><i class="fab fa-github"></i> GitHub</a>
+        </div>
       </div>
     </div>
     
@@ -771,9 +821,12 @@ body {
       <div class="project-icon"><i class="fas fa-robot"></i></div>
       <h3 class="project-title" data-i18n="projects.portfolio_bot">Portfolio Bot</h3>
       <p class="project-description" data-i18n="projects.portfolio_bot_desc">Умный Telegram бот для презентации портфолио разработчика. Показывает проекты, навыки и контакты в удобном интерактивном формате.</p>
-      <div class="project-links">
-        <a href="https://gitverse.ru/AlexStudio-Code/bot_portfolio" target="_blank" class="btn btn-gitverse"><i class="fas fa-code-branch"></i> <span data-i18n="projects.source_code">Исходный код</span></a>
-        <a href="https://github.com/AlexGame2012/bot_portfolio.git" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
+      <div class="source-code-block">
+        <div class="label"><i class="fas fa-code"></i> <span data-i18n="projects.source_code">Исходный код</span></div>
+        <div class="source-buttons">
+          <a href="https://gitverse.ru/AlexStudio-Code/bot_portfolio" target="_blank" class="btn btn-gitverse btn-sm"><i class="fas fa-code-branch"></i> GitVerse</a>
+          <a href="https://github.com/AlexGame2012/bot_portfolio.git" target="_blank" class="btn btn-github btn-sm"><i class="fab fa-github"></i> GitHub</a>
+        </div>
       </div>
     </div>
 
@@ -782,9 +835,14 @@ body {
       <div class="project-icon"><i class="fab fa-telegram"></i></div>
       <h3 class="project-title" data-i18n="projects.vertex">Vertex Manager Bot</h3>
       <p class="project-description" data-i18n="projects.vertex_desc">Мощный чат-менеджер для Telegram с продвинутой модерацией, экономикой, подарками и азартными играми. 5 уровней модераторов, внутренняя валюта, казино, лутбоксы и пополнение через Telegram Stars.</p>
-      <div class="project-links">
-        <a href="https://gitverse.ru/AlexStudio-Code/vertex-manager-bot" target="_blank" class="btn btn-gitverse"><i class="fas fa-code-branch"></i> <span data-i18n="projects.source_code">Исходный код</span></a>
-        <a href="https://github.com/AlexGame2012/vertex-manager-bot" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
+      <div class="source-code-block">
+        <div class="label"><i class="fas fa-code"></i> <span data-i18n="projects.source_code">Исходный код</span></div>
+        <div class="source-buttons">
+          <a href="https://gitverse.ru/AlexStudio-Code/vertex-manager-bot" target="_blank" class="btn btn-gitverse btn-sm"><i class="fas fa-code-branch"></i> GitVerse</a>
+          <a href="https://github.com/AlexGame2012/vertex-manager-bot" target="_blank" class="btn btn-github btn-sm"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+      </div>
+      <div class="project-actions">
         <a href="https://alexstudiocode.ru/project/Vertex" target="_blank" class="btn"><i class="fas fa-external-link-alt"></i> <span data-i18n="projects.vertex_details">Подробнее</span></a>
       </div>
     </div>
@@ -845,8 +903,8 @@ body {
          <a href="/cookie-policy" target="_blank">Подробнее о cookies</a>
       </p>
       <div class="cookie-buttons">
-          <button id="acceptCookies" class="btn btn-primary btn-sm">Принять всё</button>
-          <button id="rejectCookies" class="btn btn-outline-secondary btn-sm">Только необходимые</button>
+          <button id="acceptCookies" class="btn btn-sm">Принять всё</button>
+          <button id="rejectCookies" class="btn btn-secondary btn-sm">Только необходимые</button>
       </div>
   </div>
 </div>
@@ -878,7 +936,6 @@ const translations = {
     "projects.download_game": "Скачать игру",
     "projects.warming": "Глобальное потепление",
     "projects.warming_desc": "Информационный проект, посвящённый проблемам изменения климата и способам борьбы с глобальным потеплением.",
-    "projects.open_project": "Открыть проект",
     "projects.portfolio_bot": "Portfolio Bot",
     "projects.portfolio_bot_desc": "Умный Telegram бот для презентации портфолио разработчика. Показывает проекты, навыки и контакты в удобном интерактивном формате.",
     "projects.source_code": "Исходный код",
@@ -919,7 +976,6 @@ const translations = {
     "projects.download_game": "Download Game",
     "projects.warming": "Global warming",
     "projects.warming_desc": "Informational project dedicated to climate change issues and ways to combat global warming.",
-    "projects.open_project": "Open Project",
     "projects.portfolio_bot": "Portfolio Bot",
     "projects.portfolio_bot_desc": "Smart Telegram bot for developer portfolio presentation. Shows projects, skills and contacts in convenient interactive format.",
     "projects.source_code": "Source Code",
